@@ -387,6 +387,11 @@
   }
   footer .etym { max-width: 46ch; line-height: 1.6; }
   footer .etym i { color: var(--text); font-style: normal; }
+  footer .contatti { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
+  footer .contatti a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; }
+  footer .contatti a:hover { border-color: var(--accent); color: var(--accent); }
+  @media (max-width: 560px) { footer .contatti { align-items: flex-start; text-align: left; } }
+
 </style>
 
 <div class="topbar">
@@ -647,7 +652,10 @@
 
 <footer>
   <div class="etym">Filotheca: dal latino <i>theca</i>, "astuccio, custodia" — la tua libreria di filamenti, materiali e preventivi.</div>
-  <div>© 2026 SERMAT LAB</div>
+  <div class="contatti">
+    <a href="mailto:support@sermatlab.it">support@sermatlab.it</a>
+    <span>© 2026 SERMAT LAB</span>
+  </div>
 </footer>
 
 </body>
