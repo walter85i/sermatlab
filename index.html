@@ -309,6 +309,31 @@
   }
   @media (max-width: 760px) { .galleria { grid-template-columns: 1fr; } }
 
+  /* ---------- Primo avvio ---------- */
+  .primo-avvio {
+    max-width: 1080px; margin-inline: auto; margin-top: 44px;
+    border: 1px solid var(--border); border-left: 3px solid var(--accent); background: var(--surface);
+    padding: 26px 30px;
+  }
+  .primo-avvio .kicker {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 10px;
+  }
+  .primo-avvio h3 { font-size: 20px; margin: 0 0 10px; }
+  .primo-avvio > p { font-size: 13px; line-height: 1.75; color: var(--muted); margin: 0 0 20px; max-width: 68ch; }
+  .passi { display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 0; list-style: none; counter-reset: passo; max-width: 78ch; }
+  .passi li {
+    counter-increment: passo; position: relative; padding-left: 34px;
+    font-size: 13px; line-height: 1.7; color: var(--muted);
+  }
+  .passi li::before {
+    content: counter(passo); position: absolute; left: 0; top: 1px;
+    width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+    color: var(--accent); border: 1px solid var(--accent-soft); background: var(--accent-soft);
+  }
+  .passi li b { color: var(--text); font-weight: 600; }
+  .primo-avvio .coda { font-size: 12px; line-height: 1.7; color: var(--muted); margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--border); max-width: 72ch; }
+
   /* ---------- Aggiornamenti ---------- */
   .aggiornamenti { max-width: 1080px; margin-inline: auto; padding-block: 52px 0; }
   .aggiornamenti > h3 { font-size: 20px; margin: 0 0 6px; }
@@ -375,6 +400,7 @@
   <nav>
     <a href="#software">Software</a>
     <a href="#filotheca">Filotheca</a>
+    <a href="#primo-avvio">Primo avvio</a>
     <a href="#aggiornamenti">Aggiornamenti</a>
     <a href="#hank">Hank</a>
   </nav>
@@ -447,8 +473,7 @@
         <a class="btn-secondary" href="https://github.com/walter85i/filotheca-releases/releases/tag/v1.1.1" rel="noopener">Note di versione ↗</a>
       </div>
       <div class="gatekeeper-note">
-        <b>Quale versione?</b> Menu Apple () → <i>Informazioni su questo Mac</i>: se legge "Chip Apple M…" scegli Apple Silicon, se legge "Processore Intel" scegli Intel.<br><br>
-        <b>Primo avvio:</b> macOS potrebbe segnalare che lo sviluppatore non è verificato. Basta fare clic destro sull'app → <b>Apri</b>, una volta sola.
+        <b>Quale versione?</b> Menu Apple () → <i>Informazioni su questo Mac</i>: se legge "Chip Apple M…" scegli Apple Silicon, se legge "Processore Intel" scegli Intel.
       </div>
     </div>
 
@@ -538,6 +563,20 @@
       <span class="lbl">Intel<span class="sub">Processore Intel</span></span>
     </a>
   </div>
+</div>
+
+<div class="primo-avvio" id="primo-avvio">
+  <div class="kicker">Al primo avvio</div>
+  <h3>Se il Mac non ti fa aprire l'app</h3>
+  <p>Succede a tutti e non è un problema del programma: macOS blocca per prudenza i software di sviluppatori che non hanno pagato la certificazione Apple. Si sblocca una volta sola, poi Filotheca si apre come qualsiasi altra app.</p>
+  <ol class="passi">
+    <li>Apri il file scaricato e <b>trascina Filotheca nella cartella Applicazioni</b>, come al solito.</li>
+    <li>Prova ad aprirla: compare un avviso che dice che <b>non è stato possibile verificare lo sviluppatore</b>. Premi Fine o Annulla.</li>
+    <li>Vai su <b>Impostazioni di Sistema → Privacy e Sicurezza</b> e scorri fino in fondo alla pagina.</li>
+    <li>Trovi scritto che Filotheca è stata bloccata: premi <b>Apri comunque</b> e conferma con la password o il Touch ID.</li>
+    <li>Riapri Filotheca: chiede conferma un'ultima volta, premi <b>Apri</b>. Da qui in avanti parte normalmente.</li>
+  </ol>
+  <p class="coda">Su versioni di macOS precedenti alla 15 bastava il clic destro sull'app → <i>Apri</i>: se quel metodo funziona, va bene lo stesso. Su macOS Sequoia e successivi Apple l'ha tolto, e l'unica strada è quella qui sopra.</p>
 </div>
 
 <div class="aggiornamenti" id="aggiornamenti">
