@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="I software Sermat: Filotheca, il gestionale per chi stampa in 3D e vende, e Hank, il bilancio di famiglia, presto in arrivo.">
+<meta name="author" content="Sermat">
+<title>Sermat — Software per chi lavora</title>
+<link rel="canonical" href="https://sermatlab.it/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sermat">
+<meta property="og:locale" content="it_IT">
+<meta property="og:title" content="Sermat — Software per chi lavora">
+<meta property="og:description" content="Filotheca: costi, preventivi e archivio delle stampe per chi vende quello che stampa. Demo gratuita per Mac.">
+<meta property="og:url" content="https://sermatlab.it/">
+<meta property="og:image" content="https://sermatlab.it/img/1-calcolo-costi.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; }
+  img { max-width: 100%; }
+</style>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0A0A0A;
+    --surface: #121212;
+    --surface-2: #1A1A1C;
+    --border: #27272A;
+    --text: #F5F5F5;
+    --muted: #9C9CA3;
+    --accent: #FF3B30;
+    --accent-hover: #FF5247;
+    --accent-soft: #FF3B301F;
+    --pro: #C084FC;
+    --good: #10B981;
+    --hank: #57B583;
+    --hank-soft: #57B5831F;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="light"]) {
+      --ink: #FAFAF9;
+      --surface: #FFFFFF;
+      --surface-2: #F3F3F1;
+      --border: #E3E2DE;
+      --text: #17170F;
+      --muted: #6B6B65;
+      --accent: #E8291D;
+      --accent-hover: #D42015;
+      --accent-soft: #E8291D14;
+      --good: #0B7A54;
+      --hank: #2E7D4F;
+      --hank-soft: #2E7D4F14;
+    }
+  }
+  :root[data-theme="light"] {
+    --ink: #FAFAF9;
+    --surface: #FFFFFF;
+    --surface-2: #F3F3F1;
+    --border: #E3E2DE;
+    --text: #17170F;
+    --muted: #6B6B65;
+    --accent: #E8291D;
+    --accent-hover: #D42015;
+    --accent-soft: #E8291D14;
+    --good: #0B7A54;
+    --hank: #2E7D4F;
+    --hank-soft: #2E7D4F14;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    padding-inline: 24px;
+  }
+  h1, h2, h3, .display {
+    font-family: 'Manrope', system-ui, sans-serif;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  .tabular { font-variant-numeric: tabular-nums; }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin-inline: auto; }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    max-width: 1080px;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 22px;
+    gap: 12px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand .mark {
+    width: 28px; height: 28px; background: var(--text);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink); font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 13px;
+    flex-shrink: 0;
+  }
+  .brand-name { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: 0.04em; }
+  .brand-by { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.14em; margin-top: 1px; }
+  .topbar nav { display: flex; gap: 20px; flex-wrap: wrap; }
+  .topbar nav a {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted);
+    text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 2px;
+  }
+  .topbar nav a:hover { color: var(--text); border-color: var(--border); }
+
+  /* ---------- Intro Sermat ---------- */
+  .intro {
+    max-width: 1080px; margin-inline: auto;
+    padding-block: 40px 44px;
+    border-bottom: 1px solid var(--border);
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--muted); border: 1px solid var(--border); background: var(--surface);
+    padding: 5px 10px; margin-bottom: 22px;
+  }
+  .eyebrow::before { content: ""; width: 6px; height: 6px; background: var(--accent); flex-shrink: 0; }
+  .intro h1 {
+    font-size: clamp(30px, 4.4vw, 46px);
+    line-height: 1.06;
+    font-weight: 800;
+    margin: 0 0 18px;
+    max-width: 18ch;
+  }
+  .intro h1 em { color: var(--accent); font-style: normal; }
+  .intro p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14.5px; line-height: 1.7; color: var(--muted);
+    max-width: 58ch; margin: 0;
+  }
+
+  /* ---------- Elenco software ---------- */
+  .catalogo { max-width: 1080px; margin-inline: auto; padding-block: 44px 8px; }
+  .sez-title {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .sez-title h2 { font-size: 22px; margin: 0; }
+  .sez-title .conta { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
+
+  .soft-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  @media (max-width: 760px) { .soft-grid { grid-template-columns: 1fr; } }
+  .soft-card {
+    border: 1px solid var(--border); background: var(--surface);
+    padding: 24px 24px 22px; display: flex; flex-direction: column; gap: 14px;
+    border-top: 3px solid var(--cc);
+  }
+  .soft-head { display: flex; align-items: center; gap: 12px; }
+  .soft-head .mark {
+    width: 34px; height: 34px; background: var(--cc); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 16px; flex-shrink: 0;
+  }
+  .soft-head h3 { font-size: 19px; margin: 0; }
+  .soft-head .ruolo { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 3px; }
+  .stato {
+    margin-left: auto; flex-shrink: 0; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
+    padding: 4px 8px; border: 1px solid var(--border); color: var(--muted);
+  }
+  .stato.ora { color: var(--good); border-color: color-mix(in srgb, var(--good) 45%, var(--border)); }
+  .stato.arrivo { border-style: dashed; }
+  .soft-card p { font-size: 13px; line-height: 1.7; color: var(--muted); margin: 0; }
+  .soft-card .vai {
+    margin-top: auto; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+    text-decoration: none; color: var(--cc); border-bottom: 1px solid transparent;
+    align-self: flex-start; padding-bottom: 2px;
+  }
+  .soft-card .vai:hover { border-color: var(--cc); }
+  .soft-card .attesa { margin-top: auto; font-size: 12px; color: var(--muted); }
+  .altri {
+    margin-top: 18px; font-size: 12px; color: var(--muted); line-height: 1.7;
+    border-left: 2px solid var(--border); padding-left: 14px;
+  }
+
+  /* ---------- Scheda prodotto ---------- */
+  .prodotto { max-width: 1080px; margin-inline: auto; padding-block: 52px 0; }
+  .prod-head { border-top: 1px solid var(--border); padding-top: 32px; margin-bottom: 30px; }
+  .prod-head .kicker { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 10px; }
+  .prod-head h2 { font-size: clamp(26px, 3.4vw, 36px); margin: 0 0 12px; font-weight: 800; }
+  .prod-head p { font-family: 'JetBrains Mono', monospace; font-size: 14px; line-height: 1.7; color: var(--muted); max-width: 56ch; margin: 0; }
+
+  .prod-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: start; }
+  @media (max-width: 860px) { .prod-grid { grid-template-columns: 1fr; gap: 34px; } }
+
+  .dl-choice { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+  .btn-download {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--accent); color: #fff; text-decoration: none;
+    font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 15px;
+    padding: 14px 22px; border: 1px solid var(--accent);
+    transition: background 0.15s ease, transform 0.1s ease;
+  }
+  .btn-download:hover { background: var(--accent-hover); }
+  .btn-download:active { transform: translateY(1px); }
+  .btn-download svg { flex-shrink: 0; }
+  .btn-download .lbl { display: flex; flex-direction: column; gap: 2px; line-height: 1.2; }
+  .btn-download .sub {
+    font-family: 'JetBrains Mono', monospace; font-weight: 400; font-size: 10.5px;
+    letter-spacing: 0.02em; opacity: 0.82;
+  }
+  .btn-download.alt { background: transparent; color: var(--text); border-color: var(--border); }
+  .btn-download.alt:hover { background: var(--surface); border-color: var(--muted); }
+  .btn-download.alt svg { color: var(--accent); }
+
+  .btn-secondary {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted);
+    text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px;
+  }
+  .btn-secondary:hover { color: var(--text); }
+
+  .meta-line { font-size: 12px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; }
+  .meta-line b { color: var(--text); font-weight: 600; }
+  .dot { width: 4px; height: 4px; background: var(--border); display: inline-block; }
+
+  .gatekeeper-note {
+    margin-top: 22px; padding: 12px 14px; border: 1px solid var(--border); background: var(--surface);
+    font-size: 12px; line-height: 1.6; color: var(--muted); max-width: 48ch;
+  }
+  .gatekeeper-note b { color: var(--text); }
+
+  /* ---------- Ledger card ---------- */
+  .ledger { background: var(--surface); border: 1px solid var(--border); font-family: 'JetBrains Mono', monospace; }
+  .ledger-head {
+    display: flex; align-items: center; gap: 10px;
+    padding: 14px 16px; border-bottom: 1px solid var(--border); background: var(--surface-2);
+  }
+  .ledger-head .swatch3 { display: flex; gap: 3px; flex-shrink: 0; }
+  .ledger-head .swatch3 span { width: 10px; height: 10px; display: block; border: 1px solid rgba(128,128,128,0.25); }
+  .ledger-head .fname { font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ledger-head .badge {
+    margin-left: auto; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--pro); border: 1px solid #C084FC55; background: #C084FC1A; padding: 3px 7px; flex-shrink: 0;
+  }
+  .ledger-sub { display: flex; gap: 22px; padding: 14px 16px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  .ledger-sub div { display: flex; flex-direction: column; gap: 3px; }
+  .ledger-sub .k { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .ledger-sub .v { font-size: 14px; font-weight: 600; }
+  .ledger-rows { padding: 14px 16px; display: flex; flex-direction: column; gap: 9px; }
+  .lrow { display: flex; justify-content: space-between; font-size: 13px; }
+  .lrow .l { color: var(--muted); }
+  .lrow .r { color: var(--text); }
+  .ledger-total {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 14px 16px; border-top: 1px solid var(--border); background: var(--surface-2);
+  }
+  .ledger-total .l { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .ledger-total .r { font-size: 22px; font-weight: 700; color: var(--accent); }
+
+  /* ---------- Swatch ribbon ---------- */
+  .ribbon-wrap { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; margin-top: 48px; }
+  .ribbon-label {
+    max-width: 1080px; margin-inline: auto; padding-top: 16px;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted);
+  }
+  .ribbon { display: flex; padding-block: 14px; gap: 0; }
+  .ribbon span { width: 34px; height: 34px; flex-shrink: 0; border-right: 1px solid rgba(128,128,128,0.12); }
+
+  /* ---------- Funzioni ---------- */
+  .features { max-width: 1080px; margin-inline: auto; padding-block: 48px; }
+  .features h3 { font-size: 20px; margin: 0 0 8px; }
+  .features > p { color: var(--muted); font-size: 13px; margin: 0 0 28px; }
+  .feature-list { display: flex; flex-direction: column; }
+  .feature {
+    display: grid; grid-template-columns: 64px 1fr; gap: 20px;
+    padding-block: 22px; border-top: 1px solid var(--border);
+  }
+  .feature:last-child { border-bottom: 1px solid var(--border); }
+  .feature .num { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); padding-top: 3px; }
+  .feature h4 { font-family: 'Manrope', sans-serif; font-size: 16px; margin: 0 0 6px; }
+  .feature p { font-size: 13px; line-height: 1.65; color: var(--muted); margin: 0; max-width: 62ch; }
+  @media (max-width: 560px) { .feature { grid-template-columns: 1fr; gap: 6px; } }
+
+  /* ---------- Download di chiusura ---------- */
+  .download-cta {
+    max-width: 1080px; margin-inline: auto;
+    border: 1px solid var(--border); background: var(--surface);
+    display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
+    padding: 34px 32px;
+  }
+  @media (max-width: 700px) { .download-cta { grid-template-columns: 1fr; } }
+  .download-cta h3 { font-size: 22px; margin: 0 0 8px; }
+  .download-cta p { color: var(--muted); font-size: 13px; margin: 0; max-width: 50ch; }
+
+  /* ---------- Schermate ---------- */
+  .schermo { border: 1px solid var(--border); background: var(--surface-2); display: block; }
+  .schermo a { display: block; }
+  .schermo img { display: block; width: 100%; height: auto; }
+  .didascalia {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted);
+    padding: 9px 12px; border-top: 1px solid var(--border); line-height: 1.5;
+  }
+  .didascalia b { color: var(--text); font-weight: 600; }
+  .galleria {
+    max-width: 1080px; margin-inline: auto; padding-block: 8px 48px;
+    display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px;
+  }
+  @media (max-width: 760px) { .galleria { grid-template-columns: 1fr; } }
+
+  /* ---------- Aggiornamenti ---------- */
+  .aggiornamenti { max-width: 1080px; margin-inline: auto; padding-block: 52px 0; }
+  .aggiornamenti > h3 { font-size: 20px; margin: 0 0 6px; }
+  .aggiornamenti > p.intro-agg { color: var(--muted); font-size: 13px; margin: 0 0 26px; max-width: 60ch; line-height: 1.7; }
+  .versione { border-top: 1px solid var(--border); padding-block: 24px; display: grid; grid-template-columns: 190px 1fr; gap: 24px; }
+  .versione:last-child { border-bottom: 1px solid var(--border); }
+  @media (max-width: 660px) { .versione { grid-template-columns: 1fr; gap: 10px; } }
+  .versione .tag-v { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+  .versione .numero { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 17px; }
+  .versione .quando { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+  .versione .in-arrivo {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted);
+    border: 1px dashed var(--border); padding: 3px 7px;
+  }
+  .gruppo + .gruppo { margin-top: 18px; }
+  .gruppo h4 {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--muted); margin: 0 0 10px; font-weight: 500;
+  }
+  .gruppo h4.nuovo { color: var(--good); }
+  .gruppo h4.fix { color: var(--accent); }
+  .gruppo ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+  .gruppo li { font-size: 13px; line-height: 1.65; color: var(--muted); }
+  .gruppo li b { color: var(--text); font-weight: 600; }
+
+  /* ---------- Hank in arrivo ---------- */
+  .hank-band {
+    max-width: 1080px; margin-inline: auto; margin-top: 52px;
+    border: 1px solid var(--border); border-left: 3px solid var(--hank); background: var(--surface);
+    padding: 30px 32px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; align-items: center;
+  }
+  @media (max-width: 760px) { .hank-band { grid-template-columns: 1fr; gap: 24px; } }
+  .hank-band .kicker {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--hank); margin-bottom: 10px;
+  }
+  .hank-band h3 { font-size: 24px; margin: 0 0 10px; }
+  .hank-band p { font-size: 13px; line-height: 1.75; color: var(--muted); margin: 0; max-width: 52ch; }
+  .hank-voci { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 16px; }
+  .hank-voce {
+    display: flex; align-items: center; gap: 9px; font-size: 12px; color: var(--muted);
+    padding-block: 5px; border-bottom: 1px solid var(--border);
+  }
+  .hank-voce span.pal { width: 9px; height: 9px; flex-shrink: 0; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    max-width: 1080px; margin-inline: auto; padding-block: 28px 48px; margin-top: 52px;
+    border-top: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
+    font-size: 11px; color: var(--muted);
+  }
+  footer .etym { max-width: 46ch; line-height: 1.6; }
+  footer .etym i { color: var(--text); font-style: normal; }
+</style>
+
+<div class="topbar">
+  <div class="brand">
+    <div class="mark">S</div>
+    <div>
+      <div class="brand-name">SERMAT</div>
+      <div class="brand-by">software</div>
+    </div>
+  </div>
+  <nav>
+    <a href="#software">Software</a>
+    <a href="#filotheca">Filotheca</a>
+    <a href="#aggiornamenti">Aggiornamenti</a>
+    <a href="#hank">Hank</a>
+  </nav>
+</div>
+
+<div class="intro">
+  <h1>Software per chi <em>lavora</em>, non per chi programma.</h1>
+  <p>Programmi desktop che fanno i conti al posto tuo: quelli che oggi rifai a mano su un foglio o in un file di calcolo, ogni volta uguali. Uno per la stampa 3D, uno per il bilancio di casa, e altri in lavorazione.</p>
+</div>
+
+<div class="catalogo" id="software">
+  <div class="sez-title">
+    <h2>I software</h2>
+    <div class="conta">2 · altri in arrivo</div>
+  </div>
+
+  <div class="soft-grid">
+    <div class="soft-card" style="--cc: var(--accent)">
+      <div class="soft-head">
+        <div class="mark">F</div>
+        <div>
+          <h3>Filotheca</h3>
+          <div class="ruolo">Gestionale stampa 3D</div>
+        </div>
+        <div class="stato ora">Disponibile</div>
+      </div>
+      <p>Costi, preventivi e archivio delle stampe per chi vende quello che stampa. Importa il file dello slicer e il preventivo si compila da solo.</p>
+      <a class="vai" href="#filotheca">Scopri e scarica ↓</a>
+    </div>
+
+    <div class="soft-card" style="--cc: var(--hank)">
+      <div class="soft-head">
+        <div class="mark">H</div>
+        <div>
+          <h3>Hank</h3>
+          <div class="ruolo">Bilancio di famiglia</div>
+        </div>
+        <div class="stato arrivo">Presto in arrivo</div>
+      </div>
+      <p>Entrate, budget mensili, più conti e investimenti in un posto solo. Per Mac, iPhone e iPad.</p>
+      <div class="attesa">In lavorazione</div>
+    </div>
+  </div>
+
+  <p class="altri">Presto si aggiungeranno altri software: la casa è la stessa, l'idea pure — poche funzioni, quelle che servono davvero, senza abbonamenti e senza account.</p>
+</div>
+
+<div class="prodotto" id="filotheca">
+  <div class="prod-head">
+    <div class="kicker">01 · Disponibile ora</div>
+    <h2>Filotheca</h2>
+    <p>Dal filamento al preventivo, senza calcolatrice. Costi calcolati in automatico, preventivi PDF pronti in un click e un'importazione diretta dal tuo slicer.</p>
+  </div>
+
+  <div class="prod-grid">
+    <div>
+      <div class="dl-choice">
+        <a class="btn-download" href="https://github.com/walter85i/filotheca-releases/releases/download/v1.1.1/Filotheca.Demo-1.1.1-arm64.dmg" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>
+          <span class="lbl">Mac Apple Silicon<span class="sub">M1 · M2 · M3 · M4 — 193 MB</span></span>
+        </a>
+        <a class="btn-download alt" href="https://github.com/walter85i/filotheca-releases/releases/download/v1.1.1/Filotheca.Demo-1.1.1-intel.dmg" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>
+          <span class="lbl">Mac Intel<span class="sub">Processore Intel — 203 MB</span></span>
+        </a>
+      </div>
+      <div class="meta-line">
+        <span>Demo gratuita · 30 giorni</span><span class="dot"></span>
+        <span><b>v1.1.1</b></span><span class="dot"></span>
+        <a class="btn-secondary" href="https://github.com/walter85i/filotheca-releases/releases/tag/v1.1.1" rel="noopener">Note di versione ↗</a>
+      </div>
+      <div class="gatekeeper-note">
+        <b>Quale versione?</b> Menu Apple () → <i>Informazioni su questo Mac</i>: se legge "Chip Apple M…" scegli Apple Silicon, se legge "Processore Intel" scegli Intel.<br><br>
+        <b>Primo avvio:</b> macOS potrebbe segnalare che lo sviluppatore non è verificato. Basta fare clic destro sull'app → <b>Apri</b>, una volta sola.
+      </div>
+    </div>
+
+    <figure class="schermo" style="margin:0">
+      <a href="img/1-calcolo-costi.jpg" target="_blank" rel="noopener"><img src="img/1-calcolo-costi.jpg" width="1500" height="1000"
+           alt="La schermata Produzione di Filotheca: due filamenti nel lavoro e il pannello Calcolo in Tempo Reale che scompone elettricità, usura, occupazione e materiali fino al prezzo con margine."></a>
+      <figcaption class="didascalia"><b>Calcolo in tempo reale.</b> Ogni voce di costo separata, il prezzo si aggiorna mentre scrivi. <span style="opacity:.7">Clicca per ingrandire.</span></figcaption>
+    </figure>
+  </div>
+</div>
+
+<div class="ribbon-wrap">
+  <div class="ribbon-label">Catalogo colori ufficiali · Anycubic &amp; Bambu Lab</div>
+  <div class="ribbon" aria-hidden="true">
+    <span style="background:#EFF0F1"></span><span style="background:#212721"></span><span style="background:#CE3845"></span>
+    <span style="background:#FF7F32"></span><span style="background:#F3E500"></span><span style="background:#FFB81C"></span>
+    <span style="background:#009639"></span><span style="background:#009CBD"></span><span style="background:#003594"></span>
+    <span style="background:#5B618F"></span><span style="background:#CF4F80"></span><span style="background:#7C4D3A"></span>
+    <span style="background:#B983FF"></span><span style="background:#EC008C"></span><span style="background:#E4BD68"></span>
+    <span style="background:#3F8E43"></span><span style="background:#00B1B7"></span><span style="background:#0056B8"></span>
+    <span style="background:#FF9016"></span><span style="background:#E8AFCF"></span><span style="background:#BA9594"></span>
+    <span style="background:#B8ACD6"></span><span style="background:#77EDD7"></span><span style="background:#034638"></span>
+  
+    <span style="background:#EFF0F1"></span><span style="background:#212721"></span><span style="background:#CE3845"></span>
+    <span style="background:#FF7F32"></span><span style="background:#F3E500"></span><span style="background:#FFB81C"></span>
+    <span style="background:#009639"></span><span style="background:#009CBD"></span><span style="background:#003594"></span>
+    <span style="background:#5B618F"></span><span style="background:#CF4F80"></span><span style="background:#7C4D3A"></span>
+    <span style="background:#B983FF"></span><span style="background:#EC008C"></span><span style="background:#E4BD68"></span>
+    <span style="background:#3F8E43"></span><span style="background:#00B1B7"></span><span style="background:#0056B8"></span>
+    <span style="background:#FF9016"></span><span style="background:#E8AFCF"></span><span style="background:#BA9594"></span>
+    <span style="background:#B8ACD6"></span><span style="background:#77EDD7"></span><span style="background:#034638"></span>
+  </div>
+</div>
+
+<div class="features">
+  <h3>Cosa fa, esattamente</h3>
+  <p>Cinque funzioni, pensate per chi stampa e vende — non per chi programma.</p>
+  <div class="feature-list">
+    <div class="feature">
+      <div class="num">01</div>
+      <div><h4>Calcolo automatico dei costi</h4><p>Elettricità, usura, occupazione della stampante e materiali: il prezzo giusto per ogni lavoro, ricalcolato in tempo reale mentre compili il preventivo.</p></div>
+    </div>
+    <div class="feature">
+      <div class="num">02</div>
+      <div><h4>Importazione da slicer</h4><p>Carica il file .3mf esportato da Anycubic Slicer Next, Bambu Studio o OrcaSlicer: stampante, filamenti, tempo e peso si compilano da soli.</p></div>
+    </div>
+    <div class="feature">
+      <div class="num">03</div>
+      <div><h4>Catalogo colori ufficiali</h4><p>Le palette originali Anycubic e Bambu Lab, pronte all'uso: anteprima colore, prezzo e negozio d'acquisto in un click, senza cercare codici esadecimali.</p></div>
+    </div>
+    <div class="feature">
+      <div class="num">04</div>
+      <div><h4>Preventivi PDF</h4><p>Documenti pronti da mandare al cliente, con la tua intestazione, il tuo logo e i tuoi dati aziendali.</p></div>
+    </div>
+    <div class="feature">
+      <div class="num">05</div>
+      <div><h4>Archivio Stampe</h4><p>Ritrova ogni progetto per nome o codice identificativo, e riapri il file originale nel tuo slicer con un click.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="galleria">
+  <figure class="schermo" style="margin:0">
+    <a href="img/2-registro-lavori.jpg" target="_blank" rel="noopener"><img src="img/2-registro-lavori.jpg" width="1500" height="1000"
+         alt="Il Registro Lavori di Filotheca: elenco dei lavori con codice, cliente, stampante, consumo elettrico, costo, prezzo ideale, prezzo fatto al cliente e profitto."></a>
+    <figcaption class="didascalia"><b>Registro lavori.</b> Costo, prezzo ideale, prezzo fatto davvero e profitto, riga per riga. <span style="opacity:.7">Clicca per ingrandire.</span></figcaption>
+  </figure>
+  <figure class="schermo" style="margin:0">
+    <a href="img/3-catalogo-colori.jpg" target="_blank" rel="noopener"><img src="img/3-catalogo-colori.jpg" width="1500" height="1000"
+         alt="Il catalogo colori di Filotheca: scelta di marca e tipo di filamento, elenco dei colori ufficiali con anteprima, campo prezzo al chilo e negozio d'acquisto."></a>
+    <figcaption class="didascalia"><b>Catalogo colori.</b> Scegli marca e tipo, metti prezzo e negozio, aggiungi al listino. <span style="opacity:.7">Clicca per ingrandire.</span></figcaption>
+  </figure>
+</div>
+
+<div class="download-cta">
+  <div>
+    <h3>Pronta a provarla?</h3>
+    <p>30 giorni di prova completa, nessuna carta di credito. Disponibile per Mac Apple Silicon e Mac Intel.</p>
+  </div>
+  <div class="dl-choice" style="margin-bottom:0">
+    <a class="btn-download" href="https://github.com/walter85i/filotheca-releases/releases/download/v1.1.1/Filotheca.Demo-1.1.1-arm64.dmg" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>
+      <span class="lbl">Apple Silicon<span class="sub">M1 · M2 · M3 · M4</span></span>
+    </a>
+    <a class="btn-download alt" href="https://github.com/walter85i/filotheca-releases/releases/download/v1.1.1/Filotheca.Demo-1.1.1-intel.dmg" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>
+      <span class="lbl">Intel<span class="sub">Processore Intel</span></span>
+    </a>
+  </div>
+</div>
+
+<div class="aggiornamenti" id="aggiornamenti">
+  <h3>Aggiornamenti</h3>
+  <p class="intro-agg">Cosa cambia da una versione all'altra: le funzioni nuove e le correzioni, scritte per chi usa il programma. Chi ha già scaricato Filotheca trova qui il motivo per aggiornare.</p>
+
+  <div class="versione">
+    <div class="tag-v">
+      <span class="numero">1.1.1</span>
+      <span class="quando">18 settembre 2026</span>
+    </div>
+    <div>
+      <div class="gruppo">
+        <h4 class="fix">Correzioni</h4>
+        <ul>
+          <li><b>Il pulsante del PDF del preventivo ora funziona.</b> Nell'app installata non succedeva niente: il preventivo veniva preparato in una finestra nuova, e le finestre nuove sono bloccate dentro l'app. Ora va direttamente alla finestra di stampa, da cui si sceglie <i>Salva come PDF</i>.</li>
+          <li><b>I materiali non spariscono più quando modifichi un lavoro già registrato.</b> Andando subito su Registro Lavori → Modifica, il lavoro si apriva con la riga dei materiali vuota: salvando, perdeva i suoi filamenti e il costo crollava.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="versione">
+    <div class="tag-v">
+      <span class="numero">1.1.0</span>
+      <span class="quando">16 settembre 2026</span>
+    </div>
+    <div>
+      <div class="gruppo">
+        <h4 class="nuovo">Funzioni nuove</h4>
+        <ul>
+          <li><b>Importazione da slicer.</b> Carichi il file .3mf esportato da Anycubic Slicer Next, Bambu Studio o OrcaSlicer e il lavoro si compila da solo: stampante, filamenti, tempo e peso. I colori del progetto vengono riconosciuti anche quando non coincidono esattamente con quelli a listino.</li>
+          <li><b>Archivio Stampe.</b> Tutte le stampe registrate col file dello slicer, con codice identificativo, anteprima e ricerca per nome o codice.</li>
+          <li><b>Apertura diretta nello slicer.</b> Riapri il progetto originale con un click, senza cercarlo tra le cartelle.</li>
+          <li><b>Catalogo colori ufficiali Anycubic e Bambu Lab.</b> Circa 210 colori già pronti, con anteprima, prezzo al chilo e negozio d'acquisto.</li>
+          <li><b>Versione per Mac Intel</b> oltre a quella per Apple Silicon.</li>
+        </ul>
+      </div>
+      <div class="gruppo">
+        <h4 class="fix">Correzioni</h4>
+        <ul>
+          <li>La finestra di importazione non si apre più storta rispetto allo schermo.</li>
+          <li>Il selettore del colore non finisce più dietro alla finestra aperta.</li>
+          <li>Le colonne della Contabilità sono allineate come le altre.</li>
+          <li>L'app non mostra più la pagina vecchia dopo un aggiornamento.</li>
+          <li>Su Mac l'avviso "file danneggiato" è stato ridotto a un normale avviso di sviluppatore non verificato, che si supera con clic destro → Apri.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="hank-band" id="hank">
+  <div>
+    <div class="kicker">02 · Presto in arrivo</div>
+    <h3>Hank</h3>
+    <p>Il bilancio di famiglia. Metti le entrate del mese, decidi quanto mettere da parte e quante percentuali assegnare a ogni voce: Hank distribuisce, tiene il conto di quello che spendi e riporta al mese dopo quello che non hai speso. Per Mac, iPhone e iPad.</p>
+  </div>
+  <div class="hank-voci" aria-hidden="true">
+    <div class="hank-voce"><span class="pal" style="background:#1E5FA8"></span>Abbonamenti</div>
+    <div class="hank-voce"><span class="pal" style="background:#2E7D4F"></span>Alimenti</div>
+    <div class="hank-voce"><span class="pal" style="background:#CC6B14"></span>Necessario</div>
+    <div class="hank-voce"><span class="pal" style="background:#B08A16"></span>Emergenze</div>
+    <div class="hank-voce"><span class="pal" style="background:#C0392B"></span>Investimenti</div>
+    <div class="hank-voce"><span class="pal" style="background:#8A8378"></span>Viaggi</div>
+  </div>
+</div>
+
+<footer>
+  <div class="etym">Filotheca: dal latino <i>theca</i>, "astuccio, custodia" — la tua libreria di filamenti, materiali e preventivi.</div>
+  <div>© 2026 Sermat</div>
+</footer>
+
+</body>
+</html>
