@@ -99,14 +99,15 @@
     padding-block: 22px;
     gap: 12px;
   }
-  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand { display: flex; align-items: center; gap: 12px; }
   .brand .mark {
-    width: 28px; height: 28px; background: var(--text);
+    width: 38px; height: 38px; background: var(--accent); border-radius: 9px;
     display: flex; align-items: center; justify-content: center;
-    color: var(--ink); font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 13px;
-    flex-shrink: 0;
+    color: #fff; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 24px;
+    line-height: 1; flex-shrink: 0;
   }
-  .brand-name { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: 0.04em; }
+  .brand-name { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 21px; letter-spacing: 0.04em; }
+  .brand-name .mat { color: var(--accent); }
   .brand-by { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.14em; margin-top: 1px; }
   .topbar nav { display: flex; gap: 20px; flex-wrap: wrap; }
   .topbar nav a {
@@ -398,7 +399,7 @@
   <div class="brand">
     <div class="mark">S</div>
     <div>
-      <div class="brand-name">SERMAT&nbsp;LAB</div>
+      <div class="brand-name">SER<span class="mat">MAT</span>&nbsp;LAB</div>
       <div class="brand-by">software</div>
     </div>
   </div>
