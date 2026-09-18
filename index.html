@@ -196,7 +196,14 @@
   .prod-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: start; }
   @media (max-width: 860px) { .prod-grid { grid-template-columns: 1fr; gap: 34px; } }
 
-  .dl-choice { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+  /* Griglia invece di fila libera: così i pulsanti hanno tutti la stessa misura
+     anche quando le diciture hanno lunghezze diverse. */
+  .dl-choice {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px; margin-bottom: 16px; max-width: 620px;
+  }
+  @media (max-width: 520px) { .dl-choice { grid-template-columns: 1fr; } }
+  .download-cta .dl-choice { max-width: none; }
   .btn-download {
     display: inline-flex; align-items: center; gap: 10px;
     background: var(--accent); color: #fff; text-decoration: none;
@@ -207,7 +214,8 @@
   .btn-download:hover { background: var(--accent-hover); }
   .btn-download:active { transform: translateY(1px); }
   .btn-download svg { flex-shrink: 0; }
-  .btn-download .lbl { display: flex; flex-direction: column; gap: 2px; line-height: 1.2; }
+  .btn-download .lbl { display: flex; flex-direction: column; gap: 2px; line-height: 1.2; min-width: 0; }
+  .btn-download .sub { white-space: nowrap; }
   .btn-download .sub {
     font-family: 'JetBrains Mono', monospace; font-weight: 400; font-size: 10.5px;
     letter-spacing: 0.02em; opacity: 0.82;
@@ -487,12 +495,12 @@
     <div>
       <p class="nota-so" id="nota-so"></p>
       <div class="dl-choice" id="dl-principale">
-        <a class="btn-download mac-arm" href="https://github.com/walter85i/filotheca-releases/releases/download/v1.1.2/Filotheca.Demo-1.1.2-arm64.dmg" rel="noopener"><svg class="so" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.78c.03 2.9 2.55 3.87 2.58 3.88-.02.07-.4 1.38-1.33 2.73-.8 1.17-1.64 2.33-2.96 2.36-1.3.02-1.72-.77-3.2-.77-1.48 0-1.94.75-3.17.79-1.27.05-2.24-1.26-3.05-2.42-1.65-2.39-2.92-6.76-1.22-9.71.84-1.47 2.35-2.4 3.99-2.42 1.25-.02 2.43.84 3.2.84.76 0 2.2-1.04 3.7-.89.63.03 2.4.25 3.54 1.92-.09.06-2.11 1.23-2.08 3.69M14.1 4.6c.68-.82 1.14-1.96 1.01-3.1-.98.04-2.16.65-2.86 1.47-.63.72-1.18 1.88-1.03 2.99 1.09.08 2.2-.55 2.88-1.36"/></svg><span class="lbl">Mac Apple Silicon<span class="sub">M1 · M2 · M3 · M4 — 193 MB</span></span><svg class="freccia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg></a>
-        <a class="btn-download alt mac-intel" href="https://github.com/walter85i/filotheca-releases/releases/download/v1.1.2/Filotheca.Demo-1.1.2-intel.dmg" rel="noopener"><svg class="so" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.78c.03 2.9 2.55 3.87 2.58 3.88-.02.07-.4 1.38-1.33 2.73-.8 1.17-1.64 2.33-2.96 2.36-1.3.02-1.72-.77-3.2-.77-1.48 0-1.94.75-3.17.79-1.27.05-2.24-1.26-3.05-2.42-1.65-2.39-2.92-6.76-1.22-9.71.84-1.47 2.35-2.4 3.99-2.42 1.25-.02 2.43.84 3.2.84.76 0 2.2-1.04 3.7-.89.63.03 2.4.25 3.54 1.92-.09.06-2.11 1.23-2.08 3.69M14.1 4.6c.68-.82 1.14-1.96 1.01-3.1-.98.04-2.16.65-2.86 1.47-.63.72-1.18 1.88-1.03 2.99 1.09.08 2.2-.55 2.88-1.36"/></svg><span class="lbl">Mac Intel<span class="sub">Processore Intel — 203 MB</span></span><svg class="freccia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg></a>
+        <a class="btn-download mac-arm" href="https://github.com/walter85i/filotheca-releases/releases/download/v1.1.2/Filotheca.Demo-1.1.2-arm64.dmg" rel="noopener"><svg class="so" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.78c.03 2.9 2.55 3.87 2.58 3.88-.02.07-.4 1.38-1.33 2.73-.8 1.17-1.64 2.33-2.96 2.36-1.3.02-1.72-.77-3.2-.77-1.48 0-1.94.75-3.17.79-1.27.05-2.24-1.26-3.05-2.42-1.65-2.39-2.92-6.76-1.22-9.71.84-1.47 2.35-2.4 3.99-2.42 1.25-.02 2.43.84 3.2.84.76 0 2.2-1.04 3.7-.89.63.03 2.4.25 3.54 1.92-.09.06-2.11 1.23-2.08 3.69M14.1 4.6c.68-.82 1.14-1.96 1.01-3.1-.98.04-2.16.65-2.86 1.47-.63.72-1.18 1.88-1.03 2.99 1.09.08 2.2-.55 2.88-1.36"/></svg><span class="lbl">Mac Apple Silicon<span class="sub">M1 · M2 · M3 · M4</span></span><svg class="freccia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg></a>
+        <a class="btn-download alt mac-intel" href="https://github.com/walter85i/filotheca-releases/releases/download/v1.1.2/Filotheca.Demo-1.1.2-intel.dmg" rel="noopener"><svg class="so" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.78c.03 2.9 2.55 3.87 2.58 3.88-.02.07-.4 1.38-1.33 2.73-.8 1.17-1.64 2.33-2.96 2.36-1.3.02-1.72-.77-3.2-.77-1.48 0-1.94.75-3.17.79-1.27.05-2.24-1.26-3.05-2.42-1.65-2.39-2.92-6.76-1.22-9.71.84-1.47 2.35-2.4 3.99-2.42 1.25-.02 2.43.84 3.2.84.76 0 2.2-1.04 3.7-.89.63.03 2.4.25 3.54 1.92-.09.06-2.11 1.23-2.08 3.69M14.1 4.6c.68-.82 1.14-1.96 1.01-3.1-.98.04-2.16.65-2.86 1.47-.63.72-1.18 1.88-1.03 2.99 1.09.08 2.2-.55 2.88-1.36"/></svg><span class="lbl">Mac Intel<span class="sub">Processore Intel</span></span><svg class="freccia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg></a>
         <span class="btn-download futuro windows"><svg class="so" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.2 4.5v6.9H3V5.5m0 13L10.2 19.5v-6.8H3v5.8m8.4 2.2L21 22V12.7h-9.6v8m0-16.5v7.1H21V2l-9.6 1.2Z"/></svg><span class="lbl">Windows<span class="sub">In arrivo</span></span></span>
       </div>
       <div class="meta-line">
-        <span>Demo gratuita · 30 giorni</span><span class="dot"></span>
+        <span>Demo gratuita · 30 giorni</span><span class="dot"></span><span>circa 200 MB</span><span class="dot"></span>
         <span><b>v1.1.2</b></span><span class="dot"></span>
         <a class="btn-secondary" href="https://github.com/walter85i/filotheca-releases/releases/tag/v1.1.2" rel="noopener">Note di versione ↗</a>
       </div>
