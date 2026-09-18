@@ -232,6 +232,12 @@
     background: transparent; color: var(--text); border-color: var(--border);
   }
   .dl-choice .btn-download.non-tuo:hover { background: var(--surface); border-color: var(--muted); }
+  .dl-choice .btn-download.tuo {
+    background: var(--accent); color: #fff; border-color: var(--accent);
+  }
+  .dl-choice .btn-download.tuo:hover { background: var(--accent-hover); }
+  .dl-choice .btn-download.tuo .so,
+  .dl-choice .btn-download.tuo .freccia { color: #fff; }
   .dl-choice .btn-download.non-tuo:not(.futuro) .so,
   .dl-choice .btn-download.non-tuo:not(.futuro) .freccia { color: var(--accent); }
   .btn-download.futuro {
@@ -348,6 +354,11 @@
   }
   .primo-avvio .kicker {
     font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 10px;
+  }
+  .primo-avvio .sistema {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.1em; color: var(--text);
+    margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
   }
   .primo-avvio h3 { font-size: 20px; margin: 0 0 10px; }
   .primo-avvio > p { font-size: 13px; line-height: 1.75; color: var(--muted); margin: 0 0 20px; max-width: 68ch; }
@@ -495,12 +506,12 @@
     <div>
       <p class="nota-so" id="nota-so"></p>
       <div class="dl-choice" id="dl-principale">
-        <a class="btn-download mac-arm" href="https://github.com/walter85i/filotheca-releases/releases/download/v1.1.3/Filotheca.Demo-1.1.3-arm64.dmg" rel="noopener"><svg class="so" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.78c.03 2.9 2.55 3.87 2.58 3.88-.02.07-.4 1.38-1.33 2.73-.8 1.17-1.64 2.33-2.96 2.36-1.3.02-1.72-.77-3.2-.77-1.48 0-1.94.75-3.17.79-1.27.05-2.24-1.26-3.05-2.42-1.65-2.39-2.92-6.76-1.22-9.71.84-1.47 2.35-2.4 3.99-2.42 1.25-.02 2.43.84 3.2.84.76 0 2.2-1.04 3.7-.89.63.03 2.4.25 3.54 1.92-.09.06-2.11 1.23-2.08 3.69M14.1 4.6c.68-.82 1.14-1.96 1.01-3.1-.98.04-2.16.65-2.86 1.47-.63.72-1.18 1.88-1.03 2.99 1.09.08 2.2-.55 2.88-1.36"/></svg><span class="lbl">Mac Apple Silicon<span class="sub">M1 · M2 · M3 · M4</span></span><svg class="freccia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg></a>
+        <a class="btn-download mac-arm" href="https://github.com/walter85i/filotheca-releases/releases/download/v1.1.3/Filotheca.Demo-1.1.3-arm64.dmg" rel="noopener"><svg class="so" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.78c.03 2.9 2.55 3.87 2.58 3.88-.02.07-.4 1.38-1.33 2.73-.8 1.17-1.64 2.33-2.96 2.36-1.3.02-1.72-.77-3.2-.77-1.48 0-1.94.75-3.17.79-1.27.05-2.24-1.26-3.05-2.42-1.65-2.39-2.92-6.76-1.22-9.71.84-1.47 2.35-2.4 3.99-2.42 1.25-.02 2.43.84 3.2.84.76 0 2.2-1.04 3.7-.89.63.03 2.4.25 3.54 1.92-.09.06-2.11 1.23-2.08 3.69M14.1 4.6c.68-.82 1.14-1.96 1.01-3.1-.98.04-2.16.65-2.86 1.47-.63.72-1.18 1.88-1.03 2.99 1.09.08 2.2-.55 2.88-1.36"/></svg><span class="lbl">Apple Silicon<span class="sub">M1 · M2 · M3 · M4</span></span><svg class="freccia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg></a>
         <a class="btn-download alt mac-intel" href="https://github.com/walter85i/filotheca-releases/releases/download/v1.1.3/Filotheca.Demo-1.1.3-intel.dmg" rel="noopener"><svg class="so" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.78c.03 2.9 2.55 3.87 2.58 3.88-.02.07-.4 1.38-1.33 2.73-.8 1.17-1.64 2.33-2.96 2.36-1.3.02-1.72-.77-3.2-.77-1.48 0-1.94.75-3.17.79-1.27.05-2.24-1.26-3.05-2.42-1.65-2.39-2.92-6.76-1.22-9.71.84-1.47 2.35-2.4 3.99-2.42 1.25-.02 2.43.84 3.2.84.76 0 2.2-1.04 3.7-.89.63.03 2.4.25 3.54 1.92-.09.06-2.11 1.23-2.08 3.69M14.1 4.6c.68-.82 1.14-1.96 1.01-3.1-.98.04-2.16.65-2.86 1.47-.63.72-1.18 1.88-1.03 2.99 1.09.08 2.2-.55 2.88-1.36"/></svg><span class="lbl">Mac Intel<span class="sub">Processore Intel</span></span><svg class="freccia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg></a>
-        <span class="btn-download futuro windows"><svg class="so" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.2 4.5v6.9H3V5.5m0 13L10.2 19.5v-6.8H3v5.8m8.4 2.2L21 22V12.7h-9.6v8m0-16.5v7.1H21V2l-9.6 1.2Z"/></svg><span class="lbl">Windows<span class="sub">In arrivo</span></span></span>
+        <a class="btn-download alt windows" href="https://github.com/walter85i/filotheca-releases/releases/download/v1.1.3/Filotheca-Demo-1.1.3-windows-x64.exe" rel="noopener"><svg class="so" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.2 4.5v6.9H3V5.5m0 13L10.2 19.5v-6.8H3v5.8m8.4 2.2L21 22V12.7h-9.6v8m0-16.5v7.1H21V2l-9.6 1.2Z"/></svg><span class="lbl">Windows<span class="sub">Windows 10 e 11</span></span><svg class="freccia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg></a>
       </div>
       <div class="meta-line">
-        <span>Demo gratuita · 30 giorni</span><span class="dot"></span><span>circa 200 MB</span><span class="dot"></span>
+        <span>Demo gratuita · 30 giorni</span><span class="dot"></span><span>142-203 MB</span><span class="dot"></span>
         <span><b>v1.1.3</b></span><span class="dot"></span>
         <a class="btn-secondary" href="https://github.com/walter85i/filotheca-releases/releases/tag/v1.1.3" rel="noopener">Note di versione ↗</a>
       </div>
@@ -588,14 +599,15 @@
   <div class="dl-choice" id="dl-chiusura" style="margin-bottom:0">
     <a class="btn-download mac-arm" href="https://github.com/walter85i/filotheca-releases/releases/download/v1.1.3/Filotheca.Demo-1.1.3-arm64.dmg" rel="noopener"><svg class="so" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.78c.03 2.9 2.55 3.87 2.58 3.88-.02.07-.4 1.38-1.33 2.73-.8 1.17-1.64 2.33-2.96 2.36-1.3.02-1.72-.77-3.2-.77-1.48 0-1.94.75-3.17.79-1.27.05-2.24-1.26-3.05-2.42-1.65-2.39-2.92-6.76-1.22-9.71.84-1.47 2.35-2.4 3.99-2.42 1.25-.02 2.43.84 3.2.84.76 0 2.2-1.04 3.7-.89.63.03 2.4.25 3.54 1.92-.09.06-2.11 1.23-2.08 3.69M14.1 4.6c.68-.82 1.14-1.96 1.01-3.1-.98.04-2.16.65-2.86 1.47-.63.72-1.18 1.88-1.03 2.99 1.09.08 2.2-.55 2.88-1.36"/></svg><span class="lbl">Apple Silicon<span class="sub">M1 · M2 · M3 · M4</span></span><svg class="freccia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg></a>
     <a class="btn-download alt mac-intel" href="https://github.com/walter85i/filotheca-releases/releases/download/v1.1.3/Filotheca.Demo-1.1.3-intel.dmg" rel="noopener"><svg class="so" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 12.78c.03 2.9 2.55 3.87 2.58 3.88-.02.07-.4 1.38-1.33 2.73-.8 1.17-1.64 2.33-2.96 2.36-1.3.02-1.72-.77-3.2-.77-1.48 0-1.94.75-3.17.79-1.27.05-2.24-1.26-3.05-2.42-1.65-2.39-2.92-6.76-1.22-9.71.84-1.47 2.35-2.4 3.99-2.42 1.25-.02 2.43.84 3.2.84.76 0 2.2-1.04 3.7-.89.63.03 2.4.25 3.54 1.92-.09.06-2.11 1.23-2.08 3.69M14.1 4.6c.68-.82 1.14-1.96 1.01-3.1-.98.04-2.16.65-2.86 1.47-.63.72-1.18 1.88-1.03 2.99 1.09.08 2.2-.55 2.88-1.36"/></svg><span class="lbl">Mac Intel<span class="sub">Processore Intel</span></span><svg class="freccia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg></a>
-    <span class="btn-download futuro windows"><svg class="so" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.2 4.5v6.9H3V5.5m0 13L10.2 19.5v-6.8H3v5.8m8.4 2.2L21 22V12.7h-9.6v8m0-16.5v7.1H21V2l-9.6 1.2Z"/></svg><span class="lbl">Windows<span class="sub">In arrivo</span></span></span>
+    <a class="btn-download alt windows" href="https://github.com/walter85i/filotheca-releases/releases/download/v1.1.3/Filotheca-Demo-1.1.3-windows-x64.exe" rel="noopener"><svg class="so" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.5 10.2 4.5v6.9H3V5.5m0 13L10.2 19.5v-6.8H3v5.8m8.4 2.2L21 22V12.7h-9.6v8m0-16.5v7.1H21V2l-9.6 1.2Z"/></svg><span class="lbl">Windows<span class="sub">Windows 10 e 11</span></span><svg class="freccia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v13"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg></a>
   </div>
 </div>
 
 <div class="primo-avvio" id="primo-avvio">
   <div class="kicker">Al primo avvio</div>
-  <h3>Se il Mac non ti fa aprire l'app</h3>
-  <p>Succede a tutti e non è un problema del programma: macOS blocca per prudenza i software di sviluppatori che non hanno pagato la certificazione Apple. Si sblocca una volta sola, poi Filotheca si apre come qualsiasi altra app.</p>
+  <h3>Se il computer non ti fa aprire l'app</h3>
+  <p>Succede a tutti e non è un problema del programma: Mac e Windows bloccano per prudenza i software di sviluppatori che non hanno pagato la certificazione. Si sblocca una volta sola, poi Filotheca si apre come qualsiasi altra app.</p>
+  <div class="sistema"> macOS</div>
   <ol class="passi">
     <li>Apri il file scaricato e <b>trascina Filotheca nella cartella Applicazioni</b>, come al solito.</li>
     <li>Prova ad aprirla: compare un avviso che dice che <b>non è stato possibile verificare lo sviluppatore</b>. Premi Fine o Annulla.</li>
@@ -604,6 +616,14 @@
     <li>Riapri Filotheca: chiede conferma un'ultima volta, premi <b>Apri</b>. Da qui in avanti parte normalmente.</li>
   </ol>
   <p class="coda">Su versioni di macOS precedenti alla 15 bastava il clic destro sull'app → <i>Apri</i>: se quel metodo funziona, va bene lo stesso. Su macOS Sequoia e successivi Apple l'ha tolto, e l'unica strada è quella qui sopra.</p>
+
+  <div class="sistema" style="margin-top:26px">⊞ Windows 10 e 11</div>
+  <ol class="passi">
+    <li>Apri il file scaricato: compare la finestra blu <b>"Windows ha protetto il PC"</b>.</li>
+    <li>Premi <b>Ulteriori informazioni</b>, la scritta piccola sotto al messaggio.</li>
+    <li>Compare il pulsante <b>Esegui comunque</b>: premilo e l'installazione parte normalmente.</li>
+  </ol>
+  <p class="coda">Non serve disattivare l'antivirus né cambiare impostazioni di sicurezza: è l'avviso standard per i programmi senza firma digitale, e si supera così.</p>
 </div>
 
 <div class="aggiornamenti" id="aggiornamenti">
@@ -619,6 +639,8 @@
       <div class="gruppo">
         <h4 class="nuovo">Funzioni nuove</h4>
         <ul>
+          <li><b>Filotheca arriva su Windows.</b> Prima versione per Windows 10 e 11, con le stesse funzioni della versione Mac: stesso programma, stesso database incluso, nessuna installazione aggiuntiva da fare.</li>
+          <li><b>Il preventivo diventa un PDF vero, senza passare dalla stampa.</b> Premi il pulsante, scegli dove salvare, e il documento si apre. Prima si apriva la finestra di stampa del sistema, dove su Windows la voce per salvare in PDF non è nemmeno evidente.</li>
           <li><b>La schermata di prova terminata ora accetta una licenza.</b> Prima diceva solo di contattare l'assistenza ed era un vicolo cieco: adesso c'è il pulsante per caricare il file ricevuto via email. Lavori, materiali e impostazioni restano al loro posto e tornano disponibili subito.</li>
           <li><b>Serve più tempo per provarlo?</b> Scrivi a <a href="mailto:support@sermatlab.it" style="color:var(--accent)">support@sermatlab.it</a> e valutiamo una proroga: arriva come file da caricare nell'app, senza aspettare una versione nuova del programma.</li>
           <li>Una prova prorogata si riconosce nella barra laterale: <i>Prova estesa · N giorni rimasti</i>.</li>
@@ -731,6 +753,7 @@
     var gruppo = document.getElementById(id);
     if (!gruppo) return;
     var tuoi = gruppo.querySelectorAll(windows ? ".windows" : ".mac-arm, .mac-intel");
+    Array.prototype.forEach.call(tuoi, function (el, i) { if (i === 0) el.classList.add("tuo"); });
     var altri = gruppo.querySelectorAll(windows ? ".mac-arm, .mac-intel" : ".windows");
     Array.prototype.forEach.call(altri, function (el) { el.classList.add("non-tuo"); });
     // il pulsante del sistema riconosciuto va per primo
@@ -738,9 +761,8 @@
   });
 
   if (nota && windows) {
-    nota.innerHTML = "Sei su <b>Windows</b>: la versione per il tuo computer sta arrivando. Scrivi a " +
-      "<a href=\"mailto:support@sermatlab.it?subject=Avvisami%20quando%20esce%20Filotheca%20per%20Windows\" " +
-      "style=\"color:var(--accent)\">support@sermatlab.it</a> e ti avviso appena è pronta.";
+    nota.innerHTML = "Sei su <b>Windows</b>: al primo avvio comparirà l'avviso di sicurezza di Windows. " +
+      "<a href=\"#primo-avvio\" style=\"color:var(--accent)\">Ecco come superarlo</a>, è un attimo.";
     nota.classList.add("visibile");
   }
 })();
