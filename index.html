@@ -443,6 +443,9 @@
   footer .contatti { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
   footer .contatti a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; }
   footer .contatti a:hover { border-color: var(--accent); color: var(--accent); }
+  footer .contatti .recensione { color: var(--muted); font-size: 11.5px; border-bottom-color: transparent; }
+  footer .contatti .recensione:hover { color: var(--text); border-bottom-color: var(--border); }
+
   @media (max-width: 560px) { footer .contatti { align-items: flex-start; text-align: left; } }
 
 </style>
@@ -742,6 +745,7 @@
   <div class="etym">Filotheca: dal latino <i>theca</i>, "astuccio, custodia" — la tua libreria di filamenti, materiali e preventivi.</div>
   <div class="contatti">
     <a href="mailto:support@sermatlab.it">support@sermatlab.it</a>
+    <a href="https://it.trustpilot.com/evaluate/sermatlab.it" target="_blank" rel="noopener" class="recensione">Usi Filotheca? Lascia una recensione ↗</a>
     <span>© 2026 SERMAT LAB</span>
   </div>
 </footer>
