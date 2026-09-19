@@ -1,0 +1,31 @@
+{
+  "_commento": "Letto da Filotheca all'avvio per avvisare che è uscita una versione nuova. Va aggiornato a ogni rilascio, insieme ai link di download della pagina.",
+  "aggiornato": "2026-09-19",
+  "mac": {
+    "versione": "1.1.4",
+    "download": {
+      "arm64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.1.4/Filotheca.Demo-1.1.4-arm64.dmg",
+      "x86_64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.1.4/Filotheca.Demo-1.1.4-intel.dmg"
+    },
+    "novita": [
+      "Puoi nascondere la stampante nel preventivo: nelle Impostazioni una spunta toglie quella riga dal PDF, per chi non vuole far sapere al cliente con quale macchina lavora."
+    ],
+    "correzioni": [
+      "Il preventivo stampava il totale calcolato invece del prezzo chiesto al cliente: chi riceveva il PDF leggeva una cifra diversa da quella concordata.",
+      "Su Mac il preventivo andava ancora alla finestra di stampa: ora genera il PDF e ti chiede solo dove salvarlo.",
+      "La parola \"Preventivo\" compariva due volte in cima al foglio."
+    ]
+  },
+  "windows": {
+    "versione": "1.1.3",
+    "download": {
+      "x86_64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.1.3/Filotheca-Demo-1.1.3-windows-x64.exe"
+    },
+    "novita": [
+      "Prima versione di Filotheca per Windows 10 e 11, con le stesse funzioni della versione Mac."
+    ],
+    "correzioni": [
+      "Il preventivo genera il PDF e chiede dove salvarlo, senza passare dalla finestra di stampa."
+    ]
+  }
+}
