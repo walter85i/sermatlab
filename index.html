@@ -816,17 +816,48 @@
   var mac = !windows && (/macOS|Mac/i.test(piattaforma) || /Macintosh|Mac OS X|iPhone|iPad|iPod/i.test(ua));
   if (!windows && !mac) return;
 
+  // Su Mac il browser non dice se il processore è Apple o Intel: l'indirizzo del
+  // browser riporta "Intel Mac OS X" anche sui Mac con chip Apple, per compatibilità.
+  // L'unica traccia attendibile e disponibile ovunque è il nome della scheda grafica,
+  // che sui Mac Apple comincia per "Apple M". Se non si riesce a stabilirlo, nessuno
+  // dei due pulsanti viene messo in risalto: meglio far scegliere che indicare quello
+  // sbagliato.
+  function architetturaMac() {
+    try {
+      var tela = document.createElement("canvas");
+      var gl = tela.getContext("webgl") || tela.getContext("experimental-webgl");
+      if (!gl) return "";
+      var info = gl.getExtension("WEBGL_debug_renderer_info");
+      var scheda = info ? String(gl.getParameter(info.UNMASKED_RENDERER_WEBGL) || "") : "";
+      if (/apple\s*m\d/i.test(scheda)) return "arm";
+      if (/intel|amd|radeon|nvidia|geforce/i.test(scheda)) return "intel";
+    } catch (e) { /* niente WebGL: si rinuncia a indovinare */ }
+    return "";
+  }
+
   var nota = document.getElementById("nota-so");
+  var arch = mac ? architetturaMac() : "";
+  var selettore = windows ? ".windows" : arch === "arm" ? ".mac-arm" : arch === "intel" ? ".mac-intel" : "";
+
   ["dl-principale", "dl-chiusura"].forEach(function (id) {
     var gruppo = document.getElementById(id);
     if (!gruppo) return;
-    var tuoi = gruppo.querySelectorAll(windows ? ".windows" : ".mac-arm, .mac-intel");
-    Array.prototype.forEach.call(tuoi, function (el, i) { if (i === 0) el.classList.add("tuo"); });
-    var altri = gruppo.querySelectorAll(windows ? ".mac-arm, .mac-intel" : ".windows");
+    if (!selettore) return; // Mac di cui non si conosce il processore: si lascia tutto com'è
+    var tuoi = gruppo.querySelectorAll(selettore);
+    Array.prototype.forEach.call(tuoi, function (el) { el.classList.add("tuo"); });
+    var altri = gruppo.querySelectorAll(
+      windows ? ".mac-arm, .mac-intel" : arch === "arm" ? ".mac-intel, .windows" : ".mac-arm, .windows"
+    );
     Array.prototype.forEach.call(altri, function (el) { el.classList.add("non-tuo"); });
     // il pulsante del sistema riconosciuto va per primo
     Array.prototype.forEach.call(tuoi, function (el, i) { gruppo.insertBefore(el, gruppo.children[i]); });
   });
+
+  if (nota && mac && !arch) {
+    nota.innerHTML = "Sei su <b>Mac</b>: non riesco a capire se ha processore Apple o Intel. " +
+      "Lo trovi in <i>Menu Apple \u2192 Informazioni su questo Mac</i>.";
+    nota.classList.add("visibile");
+  }
 
   if (nota && windows) {
     nota.innerHTML = "Sei su <b>Windows</b>: scarichi la 1.1.3, l'ultima pronta per il tuo sistema. " +
