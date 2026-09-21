@@ -483,6 +483,16 @@
   footer .contatti { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
   footer .contatti a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; }
   footer .contatti a:hover { border-color: var(--accent); color: var(--accent); }
+  /* Il tondo blu è quello ufficiale di Facebook: riconoscerlo a colpo d'occhio
+     conta più che intonarlo alla pagina. */
+  footer .contatti .social {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; color: #1877F2; border-bottom: 0;
+    transition: opacity 0.15s ease, transform 0.1s ease;
+  }
+  footer .contatti .social svg { width: 26px; height: 26px; display: block; }
+  footer .contatti .social:hover { opacity: 0.82; border-color: transparent; }
+  footer .contatti .social:active { transform: translateY(1px); }
   footer .contatti .recensione { color: var(--muted); font-size: 11.5px; border-bottom-color: transparent; }
   footer .contatti .recensione:hover { color: var(--text); border-bottom-color: var(--border); }
 
@@ -876,6 +886,12 @@
 <footer>
   <div class="etym">Filotheca: dal latino <i>theca</i>, "astuccio, custodia" — la tua libreria di filamenti, materiali e preventivi.</div>
   <div class="contatti">
+    <a href="https://www.facebook.com/share/19gVedDEe6/" target="_blank" rel="noopener"
+       class="social" title="SERMAT LAB su Facebook" aria-label="SERMAT LAB su Facebook">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.44 2.9h-2.34V22c4.78-.79 8.44-4.93 8.44-9.94"/>
+      </svg>
+    </a>
     <a href="mailto:support@sermatlab.it">support@sermatlab.it</a>
     <a href="https://it.trustpilot.com/evaluate/sermatlab.it" target="_blank" rel="noopener" class="recensione">Usi Filotheca? Lascia una recensione ↗</a>
     <span>© 2026 SERMAT LAB</span>
