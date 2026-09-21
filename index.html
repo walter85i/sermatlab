@@ -197,6 +197,40 @@
     border-left: 2px solid var(--border); padding-left: 14px;
   }
 
+
+  /* ---------- Richiesta di un software su misura ---------- */
+  .richiesta {
+    max-width: 1080px; margin-inline: auto; margin-top: 56px;
+    border: 1px solid var(--border); background: var(--surface);
+    border-top: 3px solid var(--accent);
+    padding: 34px;
+    display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px;
+  }
+  @media (max-width: 860px) { .richiesta { grid-template-columns: 1fr; gap: 26px; padding: 26px; } }
+  .rich-testo h3 { font-size: 24px; margin: 0 0 14px; font-weight: 800; }
+  .rich-testo p { font-size: 13.5px; line-height: 1.75; color: var(--muted); margin: 0 0 12px; }
+  .rich-nota { border-left: 2px solid var(--border); padding-left: 14px; font-size: 12.5px !important; }
+
+  .rich-form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-content: start; }
+  @media (max-width: 620px) { .rich-form { grid-template-columns: 1fr; } }
+  .rich-form label { display: flex; flex-direction: column; gap: 6px; }
+  .rich-form .rich-largo { grid-column: 1 / -1; }
+  .rich-form span {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted);
+  }
+  .rich-form input, .rich-form textarea {
+    font-family: 'JetBrains Mono', monospace; font-size: 13.5px;
+    background: var(--surface-2); color: var(--text);
+    border: 1px solid var(--border); padding: 10px 12px; width: 100%;
+    resize: vertical;
+  }
+  .rich-form input:focus, .rich-form textarea:focus { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .rich-form input::placeholder, .rich-form textarea::placeholder { color: var(--muted); opacity: 0.7; }
+  .rich-azioni { grid-column: 1 / -1; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 4px; }
+  .rich-come { font-size: 11.5px; color: var(--muted); line-height: 1.6; max-width: 34ch; }
+  .rich-ripiego { grid-column: 1 / -1; font-size: 11.5px; color: var(--muted); margin: 0; }
+  .rich-ripiego a { color: var(--accent); }
+
   /* ---------- Scheda prodotto ---------- */
   .prodotto { max-width: 1080px; margin-inline: auto; padding-block: 52px 0; }
   .prod-head { border-top: 1px solid var(--border); padding-top: 32px; margin-bottom: 30px; }
@@ -469,7 +503,8 @@
     <a href="#filotheca">Filotheca</a>
     <a href="#primo-avvio">Primo avvio</a>
     <a href="#aggiornamenti">Aggiornamenti</a>
-    <a href="#hank">Hank</a>
+    <a href="#richiesta">Proponi un software</a>
+      <a href="#hank">Hank</a>
   </nav>
 </div>
 
@@ -513,6 +548,50 @@
   </div>
 
   <p class="altri">Presto si aggiungeranno altri software: la casa è la stessa, l'idea pure — poche funzioni, quelle che servono davvero, senza abbonamenti e senza account.</p>
+</div>
+
+
+<div class="richiesta" id="richiesta">
+  <div class="rich-testo">
+    <h3>Ti serve un software che non esiste?</h3>
+    <p>
+      Filotheca è nata così: un problema concreto — calcolare quanto costa davvero una stampa —
+      e nessun programma che lo risolvesse senza abbonamenti e fogli di calcolo.
+      Se nel tuo lavoro rifai a mano gli stessi conti ogni volta, raccontacelo.
+    </p>
+    <p class="rich-nota">
+      Non serve sapere cosa chiedere di preciso: basta descrivere il problema.
+      Leggiamo tutto, e rispondiamo anche quando la risposta è che non possiamo farlo.
+    </p>
+  </div>
+
+  <form class="rich-form" id="rich-form" novalidate>
+    <label>
+      <span>Come ti chiami</span>
+      <input type="text" name="nome" id="rf-nome" autocomplete="name" placeholder="Nome e cognome">
+    </label>
+    <label>
+      <span>Di cosa ti occupi</span>
+      <input type="text" name="lavoro" id="rf-lavoro" placeholder="es. stampa 3D, falegnameria, studio fotografico">
+    </label>
+    <label class="rich-largo">
+      <span>Cosa ti farebbe risparmiare tempo</span>
+      <textarea name="problema" id="rf-problema" rows="5" placeholder="Descrivi il lavoro ripetitivo che vorresti togliere di mezzo: che conti fai, su cosa li fai adesso, quanto tempo ti portano via."></textarea>
+    </label>
+    <div class="rich-azioni">
+      <button type="submit" class="btn-download">
+        Invia la richiesta
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px">
+          <path d="M4 12h15"/><path d="M13 6l6 6-6 6"/>
+        </svg>
+      </button>
+      <span class="rich-come">Si apre il tuo programma di posta con il messaggio già scritto: puoi rileggerlo e modificarlo prima di spedire.</span>
+    </div>
+    <p class="rich-ripiego">
+      Se non si apre niente, scrivi direttamente a
+      <a href="mailto:support@sermatlab.it">support@sermatlab.it</a>.
+    </p>
+  </form>
 </div>
 
 <div class="prodotto" id="filotheca">
@@ -874,5 +953,41 @@
   }
 })();
 </script>
+
+<script>
+// Il sito non ha un server che possa ricevere i messaggi: il modulo compone una
+// email già scritta e la apre nel programma di posta di chi sta leggendo. Nessun
+// dato passa da servizi di terzi, e non resta memorizzato da nessuna parte.
+(function () {
+  var form = document.getElementById("rich-form");
+  if (!form) return;
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var v = function (id) { return (document.getElementById(id).value || "").trim(); };
+    var nome = v("rf-nome"), lavoro = v("rf-lavoro"), problema = v("rf-problema");
+
+    var corpo = [
+      "Ciao,",
+      "",
+      "vorrei proporvi un software.",
+      "",
+      "Mi chiamo: " + (nome || "—"),
+      "Mi occupo di: " + (lavoro || "—"),
+      "",
+      "Cosa mi farebbe risparmiare tempo:",
+      problema || "—",
+      "",
+      "—",
+      "Inviato da sermatlab.it",
+    ].join("\n");
+
+    var oggetto = nome ? "Richiesta software — " + nome : "Richiesta software";
+    window.location.href =
+      "mailto:support@sermatlab.it?subject=" + encodeURIComponent(oggetto) +
+      "&body=" + encodeURIComponent(corpo);
+  });
+})();
+</script>
+
 </body>
 </html>
