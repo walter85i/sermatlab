@@ -9,6 +9,11 @@ const dizionario = JSON.parse(fs.readFileSync(`${SCR}/traduzioni-en.json`, 'utf8
 (async () => {
   const b = await chromium.launch();
   const page = await b.newPage();
+  // La pagina contiene uno script che rimanda a /en/ per chi non ha il browser in
+  // italiano: caricandola da file:// quel rimando punterebbe a un percorso
+  // inesistente e romperebbe la cattura. Si finge quindi una scelta di lingua
+  // già fatta, così lo script di rimando non parte.
+  await page.addInitScript(() => { try { sessionStorage.setItem("lingua-scelta", "it"); } catch (e) {} });
   await page.goto(`file://${SCR}/index.html`, {waitUntil:'networkidle'});
   await page.waitForTimeout(700);
 
