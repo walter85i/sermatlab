@@ -2,26 +2,26 @@
   "_commento": "Letto da Filotheca all'avvio per avvisare che è uscita una versione nuova. Va aggiornato a ogni rilascio, insieme ai link di download della pagina.",
   "aggiornato": "2026-09-22",
   "mac": {
-    "versione": "1.1.7",
+    "versione": "1.1.9",
     "download": {
-      "arm64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.1.7/Filotheca.Demo-1.1.7-arm64.dmg",
-      "x86_64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.1.7/Filotheca.Demo-1.1.7-intel.dmg"
+      "arm64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.1.9/Filotheca.Demo-1.1.9-arm64.dmg",
+      "x86_64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.1.9/Filotheca.Demo-1.1.9-intel.dmg"
     },
     "novita": [],
     "correzioni": [
-      "Bug fix."
+      "Controllo completo della traduzione inglese: trovate e corrette una trentina di scritte rimaste in italiano nonostante la lingua fosse impostata su inglese.",
+      "In inglese, il menù delle valute mostrava i nomi in italiano: ora segue la traduzione come il resto del programma."
     ]
   },
   "windows": {
-    "versione": "1.1.3",
+    "versione": "1.1.9",
     "download": {
-      "x86_64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.1.3/Filotheca-Demo-1.1.3-windows-x64.exe"
+      "x86_64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.1.9/Filotheca-Demo-1.1.9-windows-x64.exe"
     },
-    "novita": [
-      "Prima versione di Filotheca per Windows 10 e 11, con le stesse funzioni della versione Mac."
-    ],
+    "novita": [],
     "correzioni": [
-      "Il preventivo genera il PDF e chiede dove salvarlo, senza passare dalla finestra di stampa."
+      "Controllo completo della traduzione inglese: trovate e corrette una trentina di scritte rimaste in italiano nonostante la lingua fosse impostata su inglese.",
+      "In inglese, il menù delle valute mostrava i nomi in italiano: ora segue la traduzione come il resto del programma."
     ]
   }
 }

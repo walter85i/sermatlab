@@ -201,5 +201,11 @@
  "Preventivo": "Quote",
  "Venduto": "Sold",
  "Regalo o uso personale": "Gift or personal use",
- ": le stampe fatte senza incasso hanno finalmente una casella giusta.": ": prints made with no money in finally have the right box."
+ ": le stampe fatte senza incasso hanno finalmente una casella giusta.": ": prints made with no money in finally have the right box.",
+ "Windows 10 e 11 · v1.1.9": "Windows 10 and 11 · v1.1.9",
+ "Mac · Windows": "Mac · Windows",
+ "Controllo completo della traduzione inglese: trovate e corrette una trentina di scritte rimaste in italiano nonostante la lingua fosse impostata su inglese.": "Full check of the English translation: found and fixed around thirty pieces of text that stayed in Italian even with the language set to English.",
+ "Fra le più visibili: il tipo di filamento nel Catalogo Colori dei Materiali, l'avviso di aggiornamento disponibile, le schermate di attivazione licenza e di prova scaduta, l'intera pagina Assistenza, la finestra di importazione da slicer (.3mf), e le date nei lavori (Registro, Contabilità, Stampe, Calendario), che restavano nel formato italiano anche in inglese.": "Among the most visible: the filament type in the Materials Colour Catalogue, the update-available notice, the licence activation and trial-expired screens, the whole Support page, the slicer import (.3mf) window, and the dates on jobs (Job Log, Accounting, Prints, Calendar), which stayed in Italian date format even in English.",
+ "In inglese, il menù delle valute mostrava i nomi in italiano.": "In English, the currency menu showed the names in Italian.",
+ "\"EUR — Euro (Italia e area euro)\" compariva identico anche con l'app impostata in inglese. Ora segue la traduzione come il resto del programma.": "\"EUR — Euro (Italy and the euro area)\" showed up identically even with the app set to English. Now it follows the translation like the rest of the program."
 }
