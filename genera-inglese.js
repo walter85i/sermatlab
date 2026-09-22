@@ -56,6 +56,20 @@ const dizionario = JSON.parse(fs.readFileSync(`${SCR}/traduzioni-en.json`, 'utf8
              .replace(/href="favicon\.svg"/g, 'href="../favicon.svg"')
              .replace(/src="logo-firma\.png"/g, 'src="../logo-firma.png"');
 
+  // Alcuni screenshot mostrano l'interfaccia dell'app stessa (non solo testo
+  // del sito): per quelli servono scatti fatti con l'app in inglese, salvati
+  // qui accanto con lo stesso nome più "-en". Si sostituiscono ovunque
+  // compaiano, incluso il meta og:image (che usa il percorso assoluto dal
+  // dominio, non "../img/").
+  const screenshotInglesi = {
+    '1-calcolo-costi.jpg': '1-calcolo-costi-en.jpg',
+    '2-registro-lavori.jpg': '2-registro-lavori-en.jpg',
+    '3-catalogo-colori.jpg': '3-catalogo-colori-en.jpg',
+  };
+  for (const [it_, en_] of Object.entries(screenshotInglesi)) {
+    html = html.split(`img/${it_}`).join(`img/${en_}`);
+  }
+
   fs.mkdirSync(`${SCR}/en`, {recursive:true});
   fs.writeFileSync(`${SCR}/en/index.html`, html);
   console.log('pagina inglese generata');
