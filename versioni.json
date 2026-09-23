@@ -2,16 +2,15 @@
   "_commento": "Letto da Filotheca all'avvio per avvisare che è uscita una versione nuova. Va aggiornato a ogni rilascio, insieme ai link di download della pagina.",
   "aggiornato": "2026-09-22",
   "mac": {
-    "versione": "1.1.9",
+    "versione": "1.1.10",
     "download": {
-      "arm64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.1.9/Filotheca.Demo-1.1.9-arm64.dmg",
-      "x86_64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.1.9/Filotheca.Demo-1.1.9-intel.dmg"
+      "arm64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.1.10/Filotheca.Demo-1.1.10-arm64.dmg",
+      "x86_64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.1.10/Filotheca.Demo-1.1.10-intel.dmg"
     },
-    "novita": [],
-    "correzioni": [
-      "Controllo completo della traduzione inglese: trovate e corrette una trentina di scritte rimaste in italiano nonostante la lingua fosse impostata su inglese.",
-      "In inglese, il menù delle valute mostrava i nomi in italiano: ora segue la traduzione come il resto del programma."
-    ]
+    "novita": [
+      "Esporta e importa tutti i dati: una nuova sezione in Impostazioni salva lavori, materiali, stampanti e impostazioni (foto e file .3mf compresi) in un unico file, da riportare su un altro computer."
+    ],
+    "correzioni": []
   },
   "windows": {
     "versione": "1.1.9",
