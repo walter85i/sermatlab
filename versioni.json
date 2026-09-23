@@ -1,26 +1,41 @@
 {
   "_commento": "Letto da Filotheca all'avvio per avvisare che è uscita una versione nuova. Va aggiornato a ogni rilascio, insieme ai link di download della pagina.",
-  "aggiornato": "2026-09-22",
+  "aggiornato": "2026-09-24",
   "mac": {
-    "versione": "1.1.10",
+    "versione": "1.2.0",
     "download": {
-      "arm64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.1.10/Filotheca.Demo-1.1.10-arm64.dmg",
-      "x86_64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.1.10/Filotheca.Demo-1.1.10-intel.dmg"
+      "arm64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.2.0/Filotheca.Demo-1.2.0-arm64.dmg",
+      "x86_64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.2.0/Filotheca.Demo-1.2.0-intel.dmg"
     },
     "novita": [
-      "Esporta e importa tutti i dati: una nuova sezione in Impostazioni salva lavori, materiali, stampanti e impostazioni (foto e file .3mf compresi) in un unico file, da riportare su un altro computer."
+      "Nuova sezione Catalogo: i prodotti da mostrare ai clienti, con foto e prezzo, e un PDF pronto da mandare o stampare.",
+      "Un lavoro può essere fatto di più stampe separate, ognuna con ore, stampante e materiali propri, sommate in un unico costo.",
+      "Due nuovi tipi di filamento pronti all'uso: PLA Matte e PLA Silk.",
+      "Registro Lavori ordinabile anche per codice (es. STP-2026-001)."
     ],
-    "correzioni": []
+    "correzioni": [
+      "Un materiale scelto senza quantità veniva eliminato in silenzio al salvataggio: ora un avviso chiede conferma.",
+      "In Contabilità i regali comparivano fra i preventivi in attesa e gonfiavano il guadagno potenziale.",
+      "Modificando un materiale, l'elenco non si riordinava più in ordine alfabetico.",
+      "Cambiando sezione da un punto scrollato in basso, la nuova pagina si apriva già scrollata."
+    ]
   },
   "windows": {
-    "versione": "1.1.9",
+    "versione": "1.2.0",
     "download": {
-      "x86_64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.1.9/Filotheca-Demo-1.1.9-windows-x64.exe"
+      "x86_64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.2.0/Filotheca-Demo-1.2.0-windows-x64.exe"
     },
-    "novita": [],
+    "novita": [
+      "Nuova sezione Catalogo: i prodotti da mostrare ai clienti, con foto e prezzo, e un PDF pronto da mandare o stampare.",
+      "Un lavoro può essere fatto di più stampe separate, ognuna con ore, stampante e materiali propri, sommate in un unico costo.",
+      "Due nuovi tipi di filamento pronti all'uso: PLA Matte e PLA Silk.",
+      "Registro Lavori ordinabile anche per codice (es. STP-2026-001)."
+    ],
     "correzioni": [
-      "Controllo completo della traduzione inglese: trovate e corrette una trentina di scritte rimaste in italiano nonostante la lingua fosse impostata su inglese.",
-      "In inglese, il menù delle valute mostrava i nomi in italiano: ora segue la traduzione come il resto del programma."
+      "Un materiale scelto senza quantità veniva eliminato in silenzio al salvataggio: ora un avviso chiede conferma.",
+      "In Contabilità i regali comparivano fra i preventivi in attesa e gonfiavano il guadagno potenziale.",
+      "Modificando un materiale, l'elenco non si riordinava più in ordine alfabetico.",
+      "Cambiando sezione da un punto scrollato in basso, la nuova pagina si apriva già scrollata."
     ]
   }
 }
