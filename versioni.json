@@ -14,6 +14,7 @@
       "Registro Lavori ordinabile anche per codice (es. STP-2026-001)."
     ],
     "correzioni": [
+      "La schermata per caricare la licenza restava nera nella versione completa non ancora attivata, e lo stesso capitava alla schermata di prova scaduta dopo i 30 giorni.",
       "Un materiale scelto senza quantità veniva eliminato in silenzio al salvataggio: ora un avviso chiede conferma.",
       "In Contabilità i regali comparivano fra i preventivi in attesa e gonfiavano il guadagno potenziale.",
       "Modificando un materiale, l'elenco non si riordinava più in ordine alfabetico.",
@@ -32,6 +33,7 @@
       "Registro Lavori ordinabile anche per codice (es. STP-2026-001)."
     ],
     "correzioni": [
+      "La schermata per caricare la licenza restava nera nella versione completa non ancora attivata, e lo stesso capitava alla schermata di prova scaduta dopo i 30 giorni.",
       "Un materiale scelto senza quantità veniva eliminato in silenzio al salvataggio: ora un avviso chiede conferma.",
       "In Contabilità i regali comparivano fra i preventivi in attesa e gonfiavano il guadagno potenziale.",
       "Modificando un materiale, l'elenco non si riordinava più in ordine alfabetico.",
