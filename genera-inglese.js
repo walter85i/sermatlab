@@ -14,6 +14,12 @@ const dizionario = JSON.parse(fs.readFileSync(`${SCR}/traduzioni-en.json`, 'utf8
   // inesistente e romperebbe la cattura. Si finge quindi una scelta di lingua
   // già fatta, così lo script di rimando non parte.
   await page.addInitScript(() => { try { sessionStorage.setItem("lingua-scelta", "it"); } catch (e) {} });
+  // La pagina finale viene presa dal DOM già renderizzato: se lo script di
+  // Trustpilot partisse qui, troverebbe il suo riquadro e lo sostituirebbe con
+  // un iframe, che resterebbe congelato dentro la pagina inglese (con la lingua
+  // sbagliata, e senza più ricostruirsi da solo). Bloccandolo, nella pagina
+  // catturata resta il riquadro vuoto di partenza, che è quello che serve.
+  await page.route('**widget.trustpilot.com/**', (rotta) => rotta.abort());
   await page.goto(`file://${SCR}/index.html`, {waitUntil:'networkidle'});
   await page.waitForTimeout(700);
 
@@ -21,7 +27,7 @@ const dizionario = JSON.parse(fs.readFileSync(`${SCR}/traduzioni-en.json`, 'utf8
     const nonTradotti = [];
     const salta = new Set(["S","SER","MAT","LAB","Filotheca","Hank","H",".","Windows","macOS",
       "Apple Silicon","Mac Intel","Mac","theca","support@sermatlab.it","© 2026 SERMAT LAB",
-      "· Windows 1.1.3","Anycubic","Bambu Lab"]);
+      "· Windows 1.1.3","Anycubic","Bambu Lab","Trustpilot"]);
     const stringi = (x) => x.replace(/\s+/g, " ").trim();
     const mappa = {};
     for (const k of Object.keys(diz)) mappa[stringi(k)] = diz[k];
@@ -50,6 +56,10 @@ const dizionario = JSON.parse(fs.readFileSync(`${SCR}/traduzioni-en.json`, 'utf8
   await b.close();
 
   // la pagina inglese vive in /en/: le risorse stanno un livello sopra
+  // Il TrustBox mostra i propri testi nella lingua che gli si dice, non in
+  // quella della pagina: va cambiato a mano insieme al resto.
+  html = html.replace(/data-locale="it-IT"/g, 'data-locale="en-US"');
+
   html = html.replace(/lang="it"/, 'lang="en"')
              .replace(/src="img\//g, 'src="../img/')
              .replace(/href="img\//g, 'href="../img/')

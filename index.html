@@ -16,6 +16,8 @@
 <meta property="og:image" content="https://sermatlab.it/img/1-calcolo-costi.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<!-- TrustBox di Trustpilot: il riquadro "lascia una recensione" in fondo alla pagina -->
+<script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
 <style>
   html { -webkit-text-size-adjust: 100%; }
   body { margin: 0; }
@@ -487,6 +489,12 @@
     display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
     font-size: 11px; color: var(--muted);
   }
+  /* Il TrustBox sta su una riga tutta sua: dentro alla colonna dei contatti,
+     larga poco, un riquadro a larghezza piena verrebbe schiacciato. */
+  footer .trustbox-riga { width: 100%; margin-bottom: 20px; }
+  /* Quello sotto i pulsanti di scaricamento segue invece la larghezza del
+     riquadro "Quale versione?" che ha sopra, per restare incolonnato con lui. */
+  .trustbox-scarica { max-width: 48ch; margin-top: 18px; }
   footer .etym { max-width: 46ch; line-height: 1.6; }
   footer .etym i { color: var(--text); font-style: normal; }
   footer .contatti { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; text-align: right; }
@@ -637,6 +645,11 @@
       </div>
       <div class="gatekeeper-note">
         <b>Quale versione?</b> Menu Apple () → <i>Informazioni su questo Mac</i>: se legge "Chip Apple M…" scegli Apple Silicon, se legge "Processore Intel" scegli Intel.
+      </div>
+      <div class="trustbox-scarica">
+      <div class="trustpilot-widget" data-locale="it-IT" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="6aada619dcc5584be903975a" data-style-height="52px" data-style-width="100%" data-theme="dark" data-token="fe656c0a-00c1-4c6f-b874-75c3852161db">
+      <a href="https://www.trustpilot.com/review/sermatlab.it" target="_blank" rel="noopener">Trustpilot</a>
+    </div>
       </div>
     </div>
 
@@ -1020,6 +1033,33 @@
 </div>
 
 <footer>
+  <!-- TrustBox "Review Collector": invita a recensire, quindi funziona anche
+       con zero recensioni. Sostituisce il vecchio link di testo, che diceva la
+       stessa cosa. Il tema non è scritto fisso perché la pagina segue quello
+       del sistema operativo (vedi prefers-color-scheme più su): lo imposta lo
+       script qui sotto, prima che il widget venga costruito. -->
+  <div class="trustbox-riga">
+    <div class="trustpilot-widget" data-locale="it-IT" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="6aada619dcc5584be903975a" data-style-height="52px" data-style-width="100%" data-theme="dark" data-token="fe656c0a-00c1-4c6f-b874-75c3852161db">
+      <a href="https://www.trustpilot.com/review/sermatlab.it" target="_blank" rel="noopener">Trustpilot</a>
+    </div>
+  </div>
+  <script>
+    (function () {
+      // I riquadri sono due (sotto i pulsanti di scaricamento e qui in fondo):
+      // il tema va messo su tutti e due.
+      var riquadri = document.querySelectorAll(".trustpilot-widget");
+      // Impostato in tutti e due i casi, non solo quando serve il chiaro: la
+      // pagina inglese è generata catturando questa stessa pagina, quindi il
+      // tema del computer che genera resterebbe scritto dentro il file.
+      var chiaro = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+      for (var i = 0; i < riquadri.length; i++) {
+        riquadri[i].setAttribute("data-theme", chiaro ? "light" : "dark");
+        // Se lo script di Trustpilot è già arrivato (è async: può succedere), il
+        // widget va ricostruito, altrimenti resterebbe con il tema di partenza.
+        if (window.Trustpilot) window.Trustpilot.loadFromElement(riquadri[i], true);
+      }
+    })();
+  </script>
   <div class="etym">Filotheca: dal latino <i>theca</i>, "astuccio, custodia" — la tua libreria di filamenti, materiali e preventivi.</div>
   <div class="contatti">
     <a href="https://www.facebook.com/share/19gVedDEe6/" target="_blank" rel="noopener"
@@ -1029,7 +1069,6 @@
       </svg>
     </a>
     <a href="mailto:support@sermatlab.it">support@sermatlab.it</a>
-    <a href="https://it.trustpilot.com/evaluate/sermatlab.it" target="_blank" rel="noopener" class="recensione">Usi Filotheca? Lascia una recensione ↗</a>
     <span>© 2026 SERMAT LAB</span>
   </div>
 </footer>
