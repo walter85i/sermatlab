@@ -16,7 +16,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <!-- TrustBox di Trustpilot: il riquadro "lascia una recensione" in fondo alla pagina -->
-<script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+<script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async=""></script>
 <style>
   html { -webkit-text-size-adjust: 100%; }
   body { margin: 0; }
@@ -462,6 +462,22 @@
   .gruppo li { font-size: 13px; line-height: 1.65; color: var(--muted); }
   .gruppo li b { color: var(--text); font-weight: 600; }
 
+  /* ---------- Comunità: Telegram + Trustpilot, sotto le versioni rilasciate ---------- */
+  .community-band { max-width: 1080px; margin-inline: auto; margin-top: 52px; text-align: left; }
+  .telegram-card {
+    display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+    border: 1px solid var(--border); border-left: 3px solid var(--accent); background: var(--surface);
+    padding: 24px 28px; text-align: left;
+  }
+  .telegram-card svg { width: 34px; height: 34px; flex-shrink: 0; color: var(--accent); }
+  .telegram-card .testo { flex: 1 1 320px; min-width: 220px; }
+  .telegram-card h4 {
+    margin: 0 0 6px; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 16px; letter-spacing: -0.01em;
+  }
+  .telegram-card p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 52ch; }
+  .telegram-card .btn-download { flex-shrink: 0; }
+  .community-band .trustbox-versioni { margin-top: 18px; max-width: 620px; }
+
   /* ---------- Hank in arrivo ---------- */
   .hank-band {
     max-width: 1080px; margin-inline: auto; margin-top: 52px;
@@ -642,7 +658,7 @@
         <b>Which one?</b> Apple menu () → <i>About This Mac</i>: if it says "Apple M… chip" pick Apple Silicon, if it says "Intel processor" pick Intel.
       </div>
       <div class="trustbox-scarica">
-      <div class="trustpilot-widget" data-locale="en-US" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="6aada619dcc5584be903975a" data-style-height="52px" data-style-width="100%" data-theme="dark" data-token="fe656c0a-00c1-4c6f-b874-75c3852161db">
+      <div class="trustpilot-widget" data-locale="en-US" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="6aada619dcc5584be903975a" data-style-height="52px" data-style-width="100%" data-theme="light" data-token="fe656c0a-00c1-4c6f-b874-75c3852161db">
       <a href="https://www.trustpilot.com/review/sermatlab.it" target="_blank" rel="noopener">Trustpilot</a>
     </div>
       </div>
@@ -1008,6 +1024,17 @@
   </div>
 </div>
 
+<div class="community-band" id="community">
+  <!-- Il gruppo Telegram esiste solo in italiano: genera-inglese.js toglie
+       questo riquadro dalla pagina inglese, non lo traduce soltanto. -->
+  
+  <div class="trustbox-versioni">
+    <div class="trustpilot-widget" data-locale="en-US" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="6aada619dcc5584be903975a" data-style-height="52px" data-style-width="100%" data-theme="light" data-token="fe656c0a-00c1-4c6f-b874-75c3852161db">
+      <a href="https://www.trustpilot.com/review/sermatlab.it" target="_blank" rel="noopener">Trustpilot</a>
+    </div>
+  </div>
+</div>
+
 <div class="hank-band" id="hank">
   <div>
     <div class="kicker">02 · Coming soon</div>
@@ -1031,7 +1058,7 @@
        del sistema operativo (vedi prefers-color-scheme più su): lo imposta lo
        script qui sotto, prima che il widget venga costruito. -->
   <div class="trustbox-riga">
-    <div class="trustpilot-widget" data-locale="en-US" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="6aada619dcc5584be903975a" data-style-height="52px" data-style-width="100%" data-theme="dark" data-token="fe656c0a-00c1-4c6f-b874-75c3852161db">
+    <div class="trustpilot-widget" data-locale="en-US" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="6aada619dcc5584be903975a" data-style-height="52px" data-style-width="100%" data-theme="light" data-token="fe656c0a-00c1-4c6f-b874-75c3852161db">
       <a href="https://www.trustpilot.com/review/sermatlab.it" target="_blank" rel="noopener">Trustpilot</a>
     </div>
   </div>

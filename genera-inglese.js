@@ -23,6 +23,13 @@ const dizionario = JSON.parse(fs.readFileSync(`${SCR}/traduzioni-en.json`, 'utf8
   await page.goto(`file://${SCR}/index.html`, {waitUntil:'networkidle'});
   await page.waitForTimeout(700);
 
+  // Il gruppo Telegram (STAMPA 3D HelpDesk) esiste solo in italiano: si toglie
+  // dalla pagina inglese invece di tradurlo, prima del giro qui sotto che
+  // elenca le frasi rimaste non tradotte (altrimenti le segnalava per
+  // sbaglio, dato che non le trova nel dizionario). Il riquadro Trustpilot
+  // accanto, nella stessa fascia, resta.
+  await page.evaluate(() => { document.getElementById("telegram-invito")?.remove(); });
+
   const rimasti = await page.evaluate((diz) => {
     const nonTradotti = [];
     const salta = new Set(["S","SER","MAT","LAB","Filotheca","Hank","H",".","Windows","macOS",
