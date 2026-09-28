@@ -464,19 +464,30 @@
   .gruppo li b { color: var(--text); font-weight: 600; }
 
   /* ---------- Comunità: Telegram + Trustpilot, sotto le versioni rilasciate ---------- */
+  /* Colori ufficiali Telegram (dal loro brand kit), non quelli del sito: qui il
+     riquadro deve farsi riconoscere come "Telegram" a colpo d'occhio. */
   .community-band { max-width: 1080px; margin-inline: auto; margin-top: 52px; text-align: left; }
   .telegram-card {
     display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
-    border: 1px solid var(--border); border-left: 3px solid var(--accent); background: var(--surface);
+    border: 1px solid var(--border); border-left: 3px solid #27A7E7; background: var(--surface);
     padding: 24px 28px; text-align: left;
   }
-  .telegram-card svg { width: 34px; height: 34px; flex-shrink: 0; color: var(--accent); }
+  .telegram-card .logo-tg { width: 40px; height: 40px; flex-shrink: 0; }
   .telegram-card .testo { flex: 1 1 320px; min-width: 220px; }
   .telegram-card h4 {
     margin: 0 0 6px; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 16px; letter-spacing: -0.01em;
   }
   .telegram-card p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 52ch; }
-  .telegram-card .btn-download { flex-shrink: 0; }
+  .telegram-card .btn-telegram {
+    display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0;
+    background: #27A7E7; color: #fff; text-decoration: none;
+    font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 15px;
+    padding: 14px 22px; border: 1px solid #27A7E7;
+    transition: background 0.15s ease, transform 0.1s ease;
+  }
+  .telegram-card .btn-telegram:hover { background: #1E96D2; border-color: #1E96D2; }
+  .telegram-card .btn-telegram:active { transform: translateY(1px); }
+  .telegram-card .btn-telegram svg { width: 15px; height: 15px; flex-shrink: 0; opacity: .9; }
   .community-band .trustbox-versioni { margin-top: 18px; max-width: 620px; }
 
   /* ---------- Hank in arrivo ---------- */
@@ -1036,16 +1047,26 @@
   <!-- Il gruppo Telegram esiste solo in italiano: genera-inglese.js toglie
        questo riquadro dalla pagina inglese, non lo traduce soltanto. -->
   <div class="telegram-card" id="telegram-invito">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71l-4.14-3.05-2 1.93c-.23.23-.42.42-.82.42z"/>
+    <!-- Logo Telegram a colori (cerchio in gradiente blu ufficiale + aeroplanino
+         bianco): usa colori propri, non i token del sito, così resta lo stesso
+         in entrambi i temi. -->
+    <svg class="logo-tg" viewBox="0 0 48 48" aria-hidden="true">
+      <defs>
+        <linearGradient id="tg-grad" x1="6" y1="4" x2="42" y2="44" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#37BBFE"/>
+          <stop offset="1" stop-color="#007DBB"/>
+        </linearGradient>
+      </defs>
+      <circle cx="24" cy="24" r="24" fill="url(#tg-grad)"/>
+      <path fill="#fff" d="M35.15 14.7c.34-1.5-.86-2.24-1.98-1.8L10.9 21.9c-1.44.57-1.42 1.79.03 2.2l5.15 1.6 11.9-7.5c.55-.34 1.06-.16.64.21l-9.64 8.71h0l-.37 5.31c.53 0 .77-.24 1.06-.53l2.6-2.52 5.41 3.98c.99.55 1.7.26 1.96-.92l3.55-15.24z"/>
     </svg>
     <div class="testo">
       <h4>STAMPA 3D HelpDesk</h4>
       <p>Il gruppo Telegram per chi stampa in 3D: chiedi aiuto, confrontati con altri utenti, resta aggiornato su Filotheca.</p>
     </div>
-    <a class="btn-download alt" href="https://linktr.ee/3dhelpdesk" target="_blank" rel="noopener">
+    <a class="btn-telegram" href="https://linktr.ee/3dhelpdesk" target="_blank" rel="noopener">
       Entra nel gruppo
-      <svg class="freccia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
     </a>
   </div>
   <div class="trustbox-versioni">

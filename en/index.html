@@ -463,19 +463,30 @@
   .gruppo li b { color: var(--text); font-weight: 600; }
 
   /* ---------- Comunità: Telegram + Trustpilot, sotto le versioni rilasciate ---------- */
+  /* Colori ufficiali Telegram (dal loro brand kit), non quelli del sito: qui il
+     riquadro deve farsi riconoscere come "Telegram" a colpo d'occhio. */
   .community-band { max-width: 1080px; margin-inline: auto; margin-top: 52px; text-align: left; }
   .telegram-card {
     display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
-    border: 1px solid var(--border); border-left: 3px solid var(--accent); background: var(--surface);
+    border: 1px solid var(--border); border-left: 3px solid #27A7E7; background: var(--surface);
     padding: 24px 28px; text-align: left;
   }
-  .telegram-card svg { width: 34px; height: 34px; flex-shrink: 0; color: var(--accent); }
+  .telegram-card .logo-tg { width: 40px; height: 40px; flex-shrink: 0; }
   .telegram-card .testo { flex: 1 1 320px; min-width: 220px; }
   .telegram-card h4 {
     margin: 0 0 6px; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 16px; letter-spacing: -0.01em;
   }
   .telegram-card p { margin: 0; font-size: 13px; color: var(--muted); line-height: 1.6; max-width: 52ch; }
-  .telegram-card .btn-download { flex-shrink: 0; }
+  .telegram-card .btn-telegram {
+    display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0;
+    background: #27A7E7; color: #fff; text-decoration: none;
+    font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 15px;
+    padding: 14px 22px; border: 1px solid #27A7E7;
+    transition: background 0.15s ease, transform 0.1s ease;
+  }
+  .telegram-card .btn-telegram:hover { background: #1E96D2; border-color: #1E96D2; }
+  .telegram-card .btn-telegram:active { transform: translateY(1px); }
+  .telegram-card .btn-telegram svg { width: 15px; height: 15px; flex-shrink: 0; opacity: .9; }
   .community-band .trustbox-versioni { margin-top: 18px; max-width: 620px; }
 
   /* ---------- Hank in arrivo ---------- */
