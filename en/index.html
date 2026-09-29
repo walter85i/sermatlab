@@ -488,6 +488,11 @@
   .telegram-card .btn-telegram:active { transform: translateY(1px); }
   .telegram-card .btn-telegram svg { width: 15px; height: 15px; flex-shrink: 0; opacity: .9; }
   .community-band .trustbox-versioni { margin-top: 18px; max-width: 620px; }
+  /* In pausa (29 settembre 2026): il link del gruppo Telegram è da rifare,
+     quindi il riquadro resta nel codice ma non si vede finché non si toglie
+     questa regola. Per riattivarlo: cambiare l'href qui sotto nell'HTML e
+     togliere solo questa riga di CSS — nient'altro va toccato. */
+  .telegram-card.in-pausa { display: none; }
 
   /* ---------- Hank in arrivo ---------- */
   .hank-band {

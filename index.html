@@ -489,6 +489,11 @@
   .telegram-card .btn-telegram:active { transform: translateY(1px); }
   .telegram-card .btn-telegram svg { width: 15px; height: 15px; flex-shrink: 0; opacity: .9; }
   .community-band .trustbox-versioni { margin-top: 18px; max-width: 620px; }
+  /* In pausa (29 settembre 2026): il link del gruppo Telegram è da rifare,
+     quindi il riquadro resta nel codice ma non si vede finché non si toglie
+     questa regola. Per riattivarlo: cambiare l'href qui sotto nell'HTML e
+     togliere solo questa riga di CSS — nient'altro va toccato. */
+  .telegram-card.in-pausa { display: none; }
 
   /* ---------- Hank in arrivo ---------- */
   .hank-band {
@@ -1046,7 +1051,7 @@
 <div class="community-band" id="community">
   <!-- Il gruppo Telegram esiste solo in italiano: genera-inglese.js toglie
        questo riquadro dalla pagina inglese, non lo traduce soltanto. -->
-  <div class="telegram-card" id="telegram-invito">
+  <div class="telegram-card in-pausa" id="telegram-invito">
     <!-- Logo Telegram a colori (cerchio in gradiente blu ufficiale + aeroplanino
          bianco): usa colori propri, non i token del sito, così resta lo stesso
          in entrambi i temi. -->
@@ -1064,6 +1069,7 @@
       <h4>STAMPA 3D HelpDesk</h4>
       <p>Il gruppo Telegram per chi stampa in 3D: chiedi aiuto, confrontati con altri utenti, resta aggiornato su Filotheca.</p>
     </div>
+    <!-- Unico punto da cambiare per riattivare: l'href qui sotto. -->
     <a class="btn-telegram" href="https://linktr.ee/3dhelpdesk" target="_blank" rel="noopener">
       Entra nel gruppo
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
