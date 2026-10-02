@@ -2,18 +2,14 @@
   "_commento": "Letto da Filotheca all'avvio per avvisare che è uscita una versione nuova. Va aggiornato a ogni rilascio, insieme ai link di download della pagina.",
   "aggiornato": "2026-10-02",
   "mac": {
-    "versione": "1.2.12",
+    "versione": "1.2.13",
     "download": {
-      "arm64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.2.12/Filotheca.Demo-1.2.12-arm64.dmg",
-      "x86_64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.2.12/Filotheca.Demo-1.2.12-intel.dmg"
+      "arm64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.2.13/Filotheca.Demo-1.2.13-arm64.dmg",
+      "x86_64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.2.13/Filotheca.Demo-1.2.13-intel.dmg"
     },
-    "novita": [
-      "Le licenze possono portare un livello, \"Lite\" o \"Pro\": con una licenza Lite attiva alcune funzioni segnate \"Pro\" (Archivio Stampe, Importa da Slicer, Confronto Materiali, logo nel PDF) richiedono davvero il livello superiore, e materiali/stampanti restano usabili ma fino a un tetto (15 materiali, 2 stampanti).",
-      "La prova gratuita non ha questi limiti: durante i 30 giorni di Demo tutto resta accessibile come sempre.",
-      "Nel menù di scelta materiale in Produzione ora si vedono marca e negozio di ogni filamento/accessorio."
-    ],
+    "novita": [],
     "correzioni": [
-      "Nel PDF del preventivo, e nei riepiloghi pezzi di Produzione e Registro Lavori, la quantità mostrava per errore \"pdf.grammi\" o \"pdf.pezzi\" invece di \"grammi\"/\"pezzi\"."
+      "Correzioni varie e miglioramenti di stabilità."
     ]
   },
   "windows": {
