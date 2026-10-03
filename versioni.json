@@ -13,19 +13,13 @@
     ]
   },
   "windows": {
-    "versione": "1.2.1",
+    "versione": "1.2.13",
     "download": {
-      "x86_64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.2.1/Filotheca-Demo-1.2.1-windows-x64.exe"
+      "x86_64": "https://github.com/walter85i/filotheca-releases/releases/download/v1.2.13/Filotheca-Demo-1.2.13-windows-x64.exe"
     },
-    "novita": [
-      "Il menù a sinistra si riordina trascinando le voci dove preferisci.",
-      "Una stampa può essere segnata come \"Fallito\": il costo resta comunque nel totale del lavoro, e duplicando i pezzi falliti non si ripresentano.",
-      "Il nome cliente si autocompila con email e telefono già scritti in un lavoro precedente."
-    ],
+    "novita": [],
     "correzioni": [
-      "Registro Lavori: tolta la colonna \"Ideale\", che ripeteva un numero già mostrato in Produzione.",
-      "In Dashboard i regali erano contati fra i preventivi aperti, gonfiando il guadagno potenziale.",
-      "Il calendario non segnava il giorno di oggi in modo visibile."
+      "Correzioni varie e miglioramenti di stabilità."
     ]
   }
 }
